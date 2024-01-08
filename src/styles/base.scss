@@ -2,9 +2,13 @@
 
 body {
 	font-family: $font-ja;
-	color: #333;
+	color: $color-black;
+	background: url('/images/bg.webp') repeat 390px/390px;
 }
 
-p {
-	color: $color-main;
+main {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 30px 10px;
 }

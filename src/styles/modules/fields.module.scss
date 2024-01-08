@@ -1,0 +1,57 @@
+@import '../settings.scss';
+
+.section {
+	overflow: scroll;
+}
+
+.table {
+	border: 3px solid $color-black;
+	border-radius: 8px;
+	background: $color-tea;
+	border-spacing: 0;
+	border-collapse: separate;
+	overflow: hidden;
+	width: 900px;
+}
+
+.row + .row .cell{
+	border-top: 1px solid $color-black;
+}
+
+.cell {
+	width: 75px;
+	height: 75px;
+}
+
+.cell + .cell {
+	border-left: 1px solid $color-black;
+}
+
+$fields: (
+	'wheat',
+	'poutry',
+	'cow'
+	);
+
+@each $field in $fields {
+	@for $i from 1 through 3 {
+		$a: url('/images/fields/#{$field}#{$i}-a.webp') no-repeat center/cover;
+		$b: url('/images/fields/#{$field}#{$i}-b.webp') no-repeat center/cover;
+
+		@keyframes anime {
+			from { background: $a; }
+			to { background: $b; }
+		}
+
+		.#{$field}-#{$i} {
+			background: $a;
+			animation: anime 1s infinite alternate;
+		}
+	}
+}
+
+@for $i from 1 through 3 {
+	.grass-#{$i} {
+		background: url('/images/fields/grass#{$i}.webp') no-repeat center/cover;
+	}
+}

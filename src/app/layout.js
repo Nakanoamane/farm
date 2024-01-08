@@ -1,3 +1,4 @@
+import 'the-new-css-reset/css/reset.css';
 import '../styles/base.scss'
 
 export const metadata = {

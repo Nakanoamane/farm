@@ -1,7 +1,11 @@
-export default function Home() {
+import Side from './_components/side';
+import Fields from './_components/fields';
+
+export default function Index() {
   return (
     <main>
-      <h1>Home</h1>
+      <Side />
+      <Fields />
     </main>
   )
 }

@@ -1,0 +1,58 @@
+@import '../settings.scss';
+
+.nav {
+	position: relative;
+	z-index: 2;
+}
+
+.house {
+	display: block;
+	width: 100px;
+	height: 100px;
+	background: url('/images/house.webp') no-repeat center/contain;
+}
+
+.items {
+	position: absolute;
+	top: 130px;
+	left: 0;
+	width: 100px;
+	max-height: 1000px;
+	background: $color-white;
+	border: $color-black 3px solid;
+	border-radius: 8px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	& > button {
+		display: block;
+		width: 75px;
+		height: 75px;
+		border-radius: 50%;
+		text-align: center;
+		font-size: 12px;
+		padding-top: 60px;
+	}
+}
+
+$items: (
+	'beaf',
+	'chiken',
+	'egg',
+	'flour',
+	'hand',
+	'hoe',
+	'milk',
+	'poultry',
+	'sickle',
+	'wheat'
+	);
+
+@each $item in $items {
+	.#{$item} {
+		background: url('/images/items/#{$item}.webp') no-repeat center/cover;
+	}
+}
