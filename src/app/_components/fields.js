@@ -18,7 +18,7 @@ const FieldsRow = () => {
   ]
 
   for (let i = 0; i < 10; i++) {
-    let nums = Array.from({length: 12}, (_, index) => index + 1);
+    let nums = Array.from({length: 12}, (_, index) => index );
     let cells = nums.map((num) => <td key={`cell-${num}`} className={`${Style.cell} ${classNames[num]}`}></td>);
     rows.push(<tr key={`row-${i}`} className={Style.row}>{cells}</tr>);
   }
