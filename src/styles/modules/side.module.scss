@@ -9,7 +9,7 @@
 	display: block;
 	width: 100px;
 	height: 100px;
-	background: url('/images/house.webp') no-repeat center/contain;
+	background: url('~/public/images/house.webp') no-repeat center/contain;
 }
 
 .items {
@@ -53,6 +53,6 @@ $items: (
 
 @each $item in $items {
 	.#{$item} {
-		background: url('/images/items/#{$item}.webp') no-repeat center/cover;
+		background: url('~/public/images/items/#{$item}.webp') no-repeat center/cover;
 	}
 }
