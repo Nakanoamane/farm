@@ -28,30 +28,36 @@
 }
 
 $fields: (
+	'grass',
 	'wheat',
-	'poutry',
+	'poultry',
 	'cow'
-	);
+);
+
+@mixin field($field, $i) {
+	$a: url('~/public/images/fields/#{$field}#{$i}-a.webp') no-repeat center/cover;
+	$b: url('~/public/images/fields/#{$field}#{$i}-b.webp') no-repeat center/cover;
+
+	@keyframes anime-#{$field}-#{$i} {
+		0% { background: $a; }
+		49% { background: $a; }
+		50% { background: $b; }
+		100% { background: $b; }
+	}
+
+	.#{$field}-#{$i} {
+		background: $a;
+		animation: anime-#{$field}-#{$i} 1s infinite alternate;
+	}
+}
+
+@mixin fields($field) {
+	@for $i from 1 through 3 {
+		@include field($field, $i);
+	}
+}
 
 @each $field in $fields {
-	@for $i from 1 through 3 {
-		$a: url('~/public/images/fields/#{$field}#{$i}-a.webp') no-repeat center/cover;
-		$b: url('~/public/images/fields/#{$field}#{$i}-b.webp') no-repeat center/cover;
-
-		@keyframes anime {
-			from { background: $a; }
-			to { background: $b; }
-		}
-
-		.#{$field}-#{$i} {
-			background: $a;
-			animation: anime 1s infinite alternate;
-		}
-	}
+	@include fields($field);
 }
 
-@for $i from 1 through 3 {
-	.grass-#{$i} {
-		background: url('~/public/images/fields/grass#{$i}.webp') no-repeat center/cover;
-	}
-}
