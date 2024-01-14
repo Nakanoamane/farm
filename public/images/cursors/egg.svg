@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4f2e9;
+        stroke: #333;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="cursors">
+    <g id="egg">
+      <rect id="base" class="cls-2" width="32" height="32"/>
+      <ellipse class="cls-1" cx="16" cy="16" rx="11.08" ry="13.21"/>
+    </g>
+  </g>
+</svg>

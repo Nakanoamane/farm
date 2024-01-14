@@ -1,35 +1,35 @@
+'use client';
+
 import Style from '../../styles/modules/fields.module.scss';
+import Field from './field';
 
-const FieldsRow = () => {
+const FieldsRow = ({items, setItems, selectedItem, fields, setFields, time}) => {
   let rows = [];
-  const classNames = [
-    Style['wheat-1'],
-    Style['wheat-2'],
-    Style['wheat-3'],
-    Style['poultry-1'],
-    Style['poultry-2'],
-    Style['poultry-3'],
-    Style['cow-1'],
-    Style['cow-2'],
-    Style['cow-3'],
-    Style['grass-1'],
-    Style['grass-2'],
-    Style['grass-3'],
-  ]
 
-  for (let i = 0; i < 10; i++) {
-    let nums = Array.from({length: 12}, (_, index) => index );
-    let cells = nums.map((num) => <td key={`cell-${num}`} className={`${Style.cell} ${classNames[num]}`}></td>);
-    rows.push(<tr key={`row-${i}`} className={Style.row}>{cells}</tr>);
-  }
+  fields.forEach((row, index) => {
+    let cells = [];
+    row.forEach((field, i) => {
+      cells[i] = <Field key={`cell-${index}-${i}`}
+        rowIndex={index}
+        cellIndex={i}
+        field={field}
+        items={items}
+        setItems={setItems}
+        selectedItem={selectedItem}
+        setFields={setFields}
+        time={time} />;
+    });
+    rows[index] = <tr key={`row-${index}`} className={Style.row}>{cells}</tr>;
+  });
+
   return <tbody>{rows}</tbody>;
 }
 
-export default function Fields() {
+export default function Fields(props) {
 	return (
 		<section className={Style.section}>
-      <table className={Style.table}>
-        <FieldsRow />
+      <table className={Style[`${props.selectedItem}Table`]}>
+        <FieldsRow {...props}/>
       </table>
     </section>
 	)
