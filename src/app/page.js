@@ -9,6 +9,9 @@ export default function Index() {
   const [items, setItems] = useState(itemsDefault);
   const [selectedItem, setSelectedItem] = useState('hand');
   const [fields, setFields] = useState(fieldsDefault);
+  const [logs, setLogs] = useState([]);
+  const [money, setMoney] = useState(0);
+  const [score, setScore] = useState(0);
 
   const [time, setTime] = useState(0);
   useEffect(() => {
@@ -26,7 +29,11 @@ export default function Index() {
       <Home
         items={items}
         selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem} />
+        setSelectedItem={setSelectedItem}
+        logs={logs}
+        money={money}
+        score={score}
+        />
 
       <Fields
         items={items}
@@ -34,7 +41,10 @@ export default function Index() {
         selectedItem={selectedItem}
         fields={fields}
         setFields={setFields}
-        time={time} />
+        time={time}
+        setLogs={setLogs}
+        setScore={setScore}
+        />
     </main>
   )
 }

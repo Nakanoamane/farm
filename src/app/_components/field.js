@@ -5,19 +5,44 @@ import { useCallback } from 'react';
 import { fieldsOptions, updateItems, newField } from '../../lib/state';
 
 export default function Field({
-	rowIndex, cellIndex, field, items,
-	setItems, selectedItem, fields, setFields, time}) {
+	rowIndex, cellIndex, field, items, setItems,
+	selectedItem, fields, setFields, time, setLogs, setScore }) {
 
-	const changeField = useCallback((fieldOption) => {
+	const changeField = (fieldOption) => {
 		setFields(() => {
 			let newFields = [...fields];
 			newFields[rowIndex][cellIndex] = newField(time, fieldOption.items[selectedItem].field);
 			return newFields;
 		});
-	});
+	}
 
-	const changeItems = useCallback((prev, newItems) => {
+	const changeItems = (prev, newItems) => {
 		setItems(updateItems(prev, newItems));
+	}
+
+	const addLogs = (newItems) => {
+		const newLog = Object.keys(newItems).map((key) => {
+			const num = newItems[key];
+			if(num > 0){
+				return {	type: 'GET', text: `${key} +${num}` };
+			} else {
+				return {	type: 'USE', text: `${key} ${num}` };
+			}
+		});
+
+		setLogs((prev) => {
+			let newLogs = [...prev];
+			return newLog.concat(newLogs);
+		});
+	}
+
+	const addScore = useCallback((newItems) => {
+		let add = 0;
+		Object.keys(newItems).forEach((key) => {
+			const num = newItems[key];
+			if(num > 0) { add += num; }
+		});
+		if(add > 0) { setScore((prev) => prev + add); }
 	});
 
 	const useAndGetItems = (fieldOption) => {
@@ -33,6 +58,8 @@ export default function Field({
 
 		if(Object.keys(newItems).length > 0){
 			changeItems(items, newItems);
+			addLogs(newItems);
+			addScore(newItems);
 		}
 	};
 
@@ -48,6 +75,7 @@ export default function Field({
 	return (
 		<td
 			className={`${Style.cell} ${fieldsOptions[field.field].className}`}
-			onClick={onCickField} ></td>
+			onClick={onCickField}
+			></td>
 	)
 }

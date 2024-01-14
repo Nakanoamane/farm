@@ -46,7 +46,7 @@
 	background: $color-white;
 	padding: 5px;
 	width: 110px;
-	height: 580px;
+	height: 480px;
 	overflow: scroll;
 }
 
@@ -131,4 +131,90 @@
 .secret {
 	@include item;
 	background: url('~/public/images/items/secret.webp') no-repeat center/cover;
+}
+
+.logBalloon {
+	border: 1px solid $color-black;
+	border-radius: 8px;
+	background: $color-white;
+	width: 100px;
+	height: 360px;
+	overflow: scroll;
+	margin-top: 150px;
+}
+
+.logs {
+	padding: 5px;
+}
+
+@each $logType, $color in $logTypes {
+	.log#{$logType} {
+		font-size: 10px;
+		color: $color-black;
+		margin-top: 6px;
+		font-family: $font-en;
+
+		&::before {
+			content: '#{$logType}';
+			background: $color;
+			color: $color-white;
+			font-weight: 600;
+			display: inline-block;
+			padding: 2px 3px;
+			border-radius: 2px;
+			margin-right: 3px;
+			text-align: center;
+			min-width: 30px;
+		}
+	}
+}
+
+.money {
+	margin: 10px 0;
+	width: 100px;
+	text-align: right;
+	word-break: break-all;
+	position: relative;
+	padding-left: 20px;
+	font-size: 16px;
+	font-weight: 600;
+	font-family: $font-en;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 20px;
+		height: 20px;
+		background: url('~/public/images/icons/money.svg') no-repeat center/contain;
+	}
+}
+
+.score {
+	width: 100px;
+	height: 100px;
+	border: $color-black 3px solid;
+	border-radius: 50%;
+	background: $color-white;
+	padding: 16px;
+}
+
+.level {
+	font-size: 12px;
+	font-weight: 600;
+	font-family: $font-en;
+	text-align: center;
+	width: 62px;
+	height: 62px;
+	border: $color-black 1px solid;
+	border-radius: 50%;
+	background: $color-mint;
+	color: $color-white;
+	padding-top: 8px;
+}
+
+.levelNum {
+	font-size: 30px;
 }

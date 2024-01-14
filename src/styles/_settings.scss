@@ -11,6 +11,18 @@ $color-cobalt: #6D71AA;
 $color-terracotta: #CC5700;
 $color-mustard: #E2A100;
 
+:export {
+	color-white: $color-white;
+	color-black: $color-black;
+
+	color-lime: $color-lime;
+	color-tea: $color-tea;
+	color-mint: $color-mint;
+	color-cobalt: $color-cobalt;
+	color-terracotta: $color-terracotta;
+	color-mustard: $color-mustard;
+}
+
 $items: (
 	'hand',
 	'hoe',
@@ -48,3 +60,9 @@ $fieldItems: (
 	cow2: ( 'hand', 'sickle'),
 	cow3: ( 'hand', 'sickle'),
 );
+
+$logTypes: (
+	GET: $color-terracotta,
+	NEW: $color-tea,
+	USE: $color-mint,
+)

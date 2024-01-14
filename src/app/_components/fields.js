@@ -3,22 +3,18 @@
 import Style from '../../styles/modules/fields.module.scss';
 import Field from './field';
 
-const FieldsRow = ({items, setItems, selectedItem, fields, setFields, time}) => {
+const FieldsRow = (props) => {
   let rows = [];
 
-  fields.forEach((row, index) => {
+  props.fields.forEach((row, index) => {
     let cells = [];
     row.forEach((field, i) => {
       cells[i] = <Field key={`cell-${index}-${i}`}
         rowIndex={index}
         cellIndex={i}
         field={field}
-        items={items}
-        setItems={setItems}
-        selectedItem={selectedItem}
-        fields={fields}
-        setFields={setFields}
-        time={time} />;
+        {...props}
+        />;
     });
     rows[index] = <tr key={`row-${index}`} className={Style.row}>{cells}</tr>;
   });
