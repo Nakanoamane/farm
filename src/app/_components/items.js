@@ -1,6 +1,6 @@
 'use client';
 
-import Style from '../../styles/modules/side.module.scss';
+import Style from '../../styles/modules/home.module.scss';
 
 const onChangeItem = (e, setSelectedItem) => {
   const value = e.target.value;

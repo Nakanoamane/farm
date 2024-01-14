@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Side from './_components/side';
+import Home from './_components/home';
 import Fields from './_components/fields';
 import { itemsDefault, fieldsDefault, updateFields } from '../lib/state';
 
@@ -9,6 +9,7 @@ export default function Index() {
   const [items, setItems] = useState(itemsDefault);
   const [selectedItem, setSelectedItem] = useState('hand');
   const [fields, setFields] = useState(fieldsDefault);
+
   const [time, setTime] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,7 +23,7 @@ export default function Index() {
 
   return (
     <main>
-      <Side
+      <Home
         items={items}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem} />

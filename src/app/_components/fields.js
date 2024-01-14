@@ -16,6 +16,7 @@ const FieldsRow = ({items, setItems, selectedItem, fields, setFields, time}) => 
         items={items}
         setItems={setItems}
         selectedItem={selectedItem}
+        fields={fields}
         setFields={setFields}
         time={time} />;
     });
@@ -28,7 +29,7 @@ const FieldsRow = ({items, setItems, selectedItem, fields, setFields, time}) => 
 export default function Fields(props) {
 	return (
 		<section className={Style.section}>
-      <table className={Style[`${props.selectedItem}Table`]}>
+      <table className={`${Style[`${props.selectedItem}Table`]} ${Style[`num${props.items[props.selectedItem].num}`]}`}>
         <FieldsRow {...props}/>
       </table>
     </section>

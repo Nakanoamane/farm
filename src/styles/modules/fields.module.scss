@@ -17,7 +17,21 @@
 @each $item in $items {
 	.#{$item}Table {
 		@include table;
-		cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
+		cursor: not-allowed;
+
+		@each $field, $is in $fieldItems {
+			@each $i in $is {
+				@if $item == $i {
+					.#{$field}:hover {
+						cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
+					}
+
+					&.num0 .#{$field}:hover {
+						cursor: not-allowed;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -32,6 +46,10 @@
 
 .cell + .cell {
 	border-left: 1px solid $color-black;
+}
+
+.green {
+	background: $color-tea;
 }
 
 .plowed {
@@ -64,4 +82,3 @@
 @each $field in $fields {
 	@include fields($field);
 }
-

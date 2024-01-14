@@ -1,4 +1,4 @@
-import ItemStyle from '../styles/modules/side.module.scss';
+import ItemStyle from '../styles/modules/home.module.scss';
 import FieldStyle from '../styles/modules/fields.module.scss';
 
 export const itemsDefault = {
@@ -62,13 +62,14 @@ export const fieldsOptions = {
     grow: ['green'],
     growSec: 20,
     items: {
+      hoe: { field: 'green' },
       wheat: { field: 'wheat1' },
     }
   },
   green: {
-    className: '',
+    className: FieldStyle.green,
     grow: ['grass1', 'grass2', 'grass3'],
-    growSec: 20,
+    growSec: 60,
     items: {
       hoe: { field: 'plowed' },
       poultry: { field: 'poultry1' },

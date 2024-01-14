@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e2a100;
+        stroke: #333;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="icons">
+    <g id="money">
+      <ellipse class="cls-1" cx="11.33" cy="10.5" rx="9.17" ry="10"/>
+      <ellipse class="cls-1" cx="9.67" cy="10.5" rx="9.17" ry="10"/>
+      <ellipse class="cls-1" cx="9.27" cy="10.12" rx="5.73" ry="6.88"/>
+    </g>
+  </g>
+</svg>

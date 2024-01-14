@@ -4,10 +4,13 @@ import Style from '../../styles/modules/fields.module.scss';
 import { useCallback } from 'react';
 import { fieldsOptions, updateItems, newField } from '../../lib/state';
 
-export default function Field({rowIndex, cellIndex, field, items, setItems, selectedItem, setFields, time}) {
+export default function Field({
+	rowIndex, cellIndex, field, items,
+	setItems, selectedItem, fields, setFields, time}) {
+
 	const changeField = useCallback((fieldOption) => {
-		setFields(prev => {
-			let newFields = [...prev];
+		setFields(() => {
+			let newFields = [...fields];
 			newFields[rowIndex][cellIndex] = newField(time, fieldOption.items[selectedItem].field);
 			return newFields;
 		});
@@ -24,6 +27,7 @@ export default function Field({rowIndex, cellIndex, field, items, setItems, sele
 			newItems = {...item.items};
 		}
 		if(items[selectedItem].num !== undefined){
+			if(items[selectedItem].num <= 0) return;
 			newItems[selectedItem] = -1;
 		}
 
@@ -32,16 +36,18 @@ export default function Field({rowIndex, cellIndex, field, items, setItems, sele
 		}
 	};
 
+	const onCickField =  () => {
+		const fieldOption = fieldsOptions[field.field];
+		const clickable = items[selectedItem].num !== undefined && items[selectedItem].num <= 0;
+		if(clickable || !fieldOption.items || !fieldOption.items[selectedItem] ) return;
+
+		changeField(fieldOption);
+		useAndGetItems(fieldOption);
+	}
+
 	return (
 		<td
 			className={`${Style.cell} ${fieldsOptions[field.field].className}`}
-			onClick={()	=> {
-				const fieldOption = fieldsOptions[field.field];
-				if(!fieldOption.items || !fieldOption.items[selectedItem]) return;
-
-				changeField(fieldOption);
-				useAndGetItems(fieldOption);
-			} }
-			></td>
+			onClick={onCickField} ></td>
 	)
 }
