@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import Style from '../../styles/modules/home.module.scss';
 import Items from './items';
 import Logs from './logs';
@@ -9,10 +9,10 @@ const balloonSizes = [ Style.balloon, Style.balloonLarge, Style.balloonSmall ];
 
 export default function Home({items, selectedItem, setSelectedItem, logs, money, score}) {
   const [balloonClassName, setBalloonClassName] = useState(Style.balloon);
-  const onClickHouse = useCallback(() => {
+  const onClickHouse = () => {
     const index = (balloonSizes.indexOf(balloonClassName) + 1) % 3;
     setBalloonClassName(balloonSizes[index]);
-  });
+  };
 
   const lebelScore = 10;
   const calcLevel = () => {

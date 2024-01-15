@@ -1,7 +1,6 @@
 'use client';
 
 import Style from '../../styles/modules/fields.module.scss';
-import { useCallback } from 'react';
 import { fieldsOptions, updateItems, newField } from '../../lib/state';
 
 export default function Field({
@@ -36,16 +35,16 @@ export default function Field({
 		});
 	}
 
-	const addScore = useCallback((newItems) => {
+	const addScore = (newItems) => {
 		let add = 0;
 		Object.keys(newItems).forEach((key) => {
 			const num = newItems[key];
 			if(num > 0) { add += num; }
 		});
 		if(add > 0) { setScore((prev) => prev + add); }
-	});
+	}
 
-	const useAndGetItems = (fieldOption) => {
+	const getAndUseItems = (fieldOption) => {
 		const item = fieldOption.items[selectedItem];
 		let newItems = {};
 		if(item.items) {
@@ -69,7 +68,7 @@ export default function Field({
 		if(clickable || !fieldOption.items || !fieldOption.items[selectedItem] ) return;
 
 		changeField(fieldOption);
-		useAndGetItems(fieldOption);
+		getAndUseItems(fieldOption);
 	}
 
 	return (
