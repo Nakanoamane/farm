@@ -79,19 +79,19 @@ export const fieldsOptions = {
   grass1: {
     className: FieldStyle.grass1,
     items: {
-      sickle: { field: 'green', items: { wheat: 1 } },
+      sickle: { field: 'green' },
     }
   },
   grass2: {
     className: FieldStyle.grass2,
     items: {
-      sickle: { field: 'green', items: { poultry: 1 } },
+      sickle: { field: 'green' },
     }
   },
   grass3: {
     className: FieldStyle.grass3,
     items: {
-      sickle: { field: 'green', items: { cow: 1 } },
+      sickle: { field: 'green', items: { wheat: 1 } },
     }
   },
   wheat1: {
@@ -168,12 +168,50 @@ export const fieldsOptions = {
   },
 };
 
+export const achievementsDefault = {
+  begginer: {
+    title: 'Begginer',
+    text: 'レベル2に到達する',
+    icon: 'trophy-tea',
+    unlocked: true,
+    achieved: false,
+    next: 'amateur'
+  },
+  amateur: {
+    title: 'Amateur',
+    text: 'レベル7に到達する',
+    unlocked: false,
+    achieved: false,
+    next: 'expert'
+  },
+  expert: {
+    title: 'Expert',
+    text: 'レベル15に到達する',
+    unlocked: false,
+    achieved: false,
+    next: 'master'
+  },
+  master: {
+    title: 'Master',
+    text: 'レベル30に到達する',
+    unlocked: false,
+    achieved: false,
+  },
+};
+
 
 export const updateItems = (prevItems, updateItems) => {
   let newItems = {...prevItems};
   Object.keys(updateItems).forEach(item => {
     if(newItems[item].num !== undefined) {
       newItems[item].num += updateItems[item];
+    }
+    if(updateItems[item] < 0) {
+      if (newItems[item].usedNum === undefined) { newItems[item].usedNum = 0; }
+      newItems[item].usedNum += (updateItems[item] * (-1));
+    } else {
+      if (newItems[item].totalNum === undefined) { newItems[item].totalNum = 0; }
+      newItems[item].totalNum += updateItems[item];
     }
   });
   return newItems;
@@ -219,4 +257,27 @@ export function updateFields(time, fields) {
     });
   });
   return newFields;
+}
+
+export function newLogs(itemNums, selectedItem) {
+  return Object.keys(itemNums).map((key) => {
+    const num = itemNums[key];
+    if(num > 0){
+      return {	type: 'GET', text: `${key} +${num}` };
+    } else {
+      let text = `${key} ${num}`
+      if (itemsDefault[selectedItem].num === undefined) {
+        text = key;
+      }
+      return {	type: 'USE', text: text };
+    }
+  });
+}
+
+export function updateachievements(achievements, achieved) {
+  let newachievements = {...achievements};
+  newachievements[achieved].achieved = true;
+  let next = newachievements[achieved].next;
+  newachievements[next].unlocked = true;
+  return newachievements;
 }

@@ -10,6 +10,7 @@ $color-mint: #75C697;
 $color-cobalt: #6D71AA;
 $color-terracotta: #CC5700;
 $color-mustard: #E2A100;
+$color-ocher: #AA8E50;
 
 :export {
 	color-white: $color-white;
@@ -65,4 +66,17 @@ $logTypes: (
 	GET: $color-terracotta,
 	NEW: $color-tea,
 	USE: $color-mint,
-)
+);
+
+$shops: (
+	'museum',
+	'restaurant',
+	'grocer',
+);
+
+$achievements: (
+	'trophy-tea',
+	'trophy-mint',
+	'trophy-lime',
+	'trophy-mustard',
+);

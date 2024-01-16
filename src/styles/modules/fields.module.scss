@@ -17,9 +17,11 @@
 @each $item in $items {
 	.#{$item}Table {
 		@include table;
-		cursor: not-allowed;
 
 		@each $field, $is in $fieldItems {
+			.#{$field}:hover {
+				cursor: not-allowed;
+			}
 			@each $i in $is {
 				@if $item == $i {
 					.#{$field}:hover {

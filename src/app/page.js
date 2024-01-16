@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Home from './_components/home';
 import Fields from './_components/fields';
-import { itemsDefault, fieldsDefault, updateFields } from '../lib/state';
+import { itemsDefault, fieldsDefault, achievementsDefault, updateFields } from '../lib/state';
+import Shops from './_components/shops';
 
 export default function Index() {
   const [items, setItems] = useState(itemsDefault);
@@ -12,6 +13,7 @@ export default function Index() {
   const [logs, setLogs] = useState([]);
   const [money, setMoney] = useState(0);
   const [score, setScore] = useState(0);
+  const [achievements, setachievements] = useState(achievementsDefault);
 
   const [time, setTime] = useState(0);
   useEffect(() => {
@@ -44,6 +46,10 @@ export default function Index() {
         time={time}
         setLogs={setLogs}
         setScore={setScore}
+        />
+
+      <Shops
+        achievements={achievements}
         />
     </main>
   )

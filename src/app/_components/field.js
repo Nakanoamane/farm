@@ -1,7 +1,7 @@
 'use client';
 
 import Style from '../../styles/modules/fields.module.scss';
-import { fieldsOptions, updateItems, newField } from '../../lib/state';
+import { fieldsOptions, updateItems, newField, newLogs } from '../../lib/state';
 
 export default function Field({
 	rowIndex, cellIndex, field, items, setItems,
@@ -20,18 +20,9 @@ export default function Field({
 	}
 
 	const addLogs = (newItems) => {
-		const newLog = Object.keys(newItems).map((key) => {
-			const num = newItems[key];
-			if(num > 0){
-				return {	type: 'GET', text: `${key} +${num}` };
-			} else {
-				return {	type: 'USE', text: `${key} ${num}` };
-			}
-		});
-
+		const add = newLogs(newItems, selectedItem);
 		setLogs((prev) => {
-			let newLogs = [...prev];
-			return newLog.concat(newLogs);
+			return add.concat([...prev]);
 		});
 	}
 
@@ -50,16 +41,11 @@ export default function Field({
 		if(item.items) {
 			newItems = {...item.items};
 		}
-		if(items[selectedItem].num !== undefined){
-			if(items[selectedItem].num <= 0) return;
-			newItems[selectedItem] = -1;
-		}
+		newItems[selectedItem] = -1;
 
-		if(Object.keys(newItems).length > 0){
-			changeItems(items, newItems);
-			addLogs(newItems);
-			addScore(newItems);
-		}
+		changeItems(items, newItems);
+		addLogs(newItems);
+		addScore(newItems);
 	};
 
 	const onCickField =  () => {

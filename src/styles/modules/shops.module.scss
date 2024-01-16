@@ -1,0 +1,107 @@
+@import '../settings.scss';
+
+.shops {
+	width: 100px;
+}
+
+.shop {
+	width: 100px;
+	height: 120px;
+	padding: 10px 0;
+	position: relative;
+
+	&.selectedShop::before {
+		content: '';
+		position: absolute;
+		top: 40px;
+		right: 95px;
+		display: block;
+    height: 50px;
+    width: 37px;
+		clip-path: polygon(50% 50%, 0 0, 0 100%);
+		background-color: $color-black;
+	}
+}
+
+@mixin shopBtnActive {
+	width: 100px;
+	height: 100px;
+	margin: 0;
+}
+
+@mixin shopBtn {
+	@include shopBtnActive;
+
+	&:hover {
+		cursor: pointer;
+		width: 106px;
+		height: 106px;
+		margin: -3px;
+	}
+	&:active {
+		@include shopBtnActive;
+	}
+}
+
+@each $shop in $shops {
+	.#{$shop} {
+		background: url('~/public/images/shops/#{$shop}.webp') no-repeat center/contain;
+		@include shopBtn;
+	}
+}
+
+@mixin balloon {
+	position: absolute;
+	top: 10px;
+	right: 130px;
+	border: $color-black 3px solid;
+	border-radius: 8px;
+	background: $color-white;
+	padding: 10px;
+	width: 380px;
+	height: 480px;
+}
+
+.museumBalloon {
+	@include balloon;
+}
+
+.achievement {
+	padding: 10px 10px 10px 80px;
+	border-bottom: 3px solid $color-black;
+	position: relative;
+
+	.acvTitle {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	.acvText {
+		font-size: 16px;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 15px;
+		left: 5px;
+		display: block;
+		width: 60px;
+		height: 60px;
+		background: url('~/public/images/achievements/trophy-secret.svg') no-repeat center/contain;
+	}
+	@each $acv in $achievements {
+		&.#{$acv}::before {
+			background-image: url('~/public/images/achievements/#{$acv}.svg');
+		}
+	}
+}
+
+.restaurantBalloon {
+	@include balloon;
+	background: $color-mustard;
+}
+
+.grocerBalloon {
+	@include balloon;
+	background: $color-ocher;
+}
