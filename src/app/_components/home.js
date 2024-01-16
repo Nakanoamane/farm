@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { levelScore, calcLevel } from '../../lib/state';
 import Style from '../../styles/modules/home.module.scss';
 import Items from './items';
 import Logs from './logs';
@@ -14,23 +15,11 @@ export default function Home({items, selectedItem, setSelectedItem, logs, money,
     setBalloonClassName(balloonSizes[index]);
   };
 
-  const lebelScore = 10;
-  const calcLevel = () => {
-    let lv = 1;
-    let nextScore = lebelScore;
-    while(score >= nextScore) {
-      lv++;
-      nextScore += lebelScore * lv;
-    }
-
-    return [lv, nextScore];
-  }
-  const [level, nextScore] = calcLevel();
-
+  const [level, nextScore] = calcLevel(score);
   const scoreStyle = () => {
     const white = Style['color-white'];
     const mint = Style['color-mint'];
-    const max = lebelScore * level;
+    const max = levelScore * level;
     const per = Math.round((max - (nextScore - score))/ max * 100);
 
     return {

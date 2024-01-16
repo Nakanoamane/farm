@@ -13,7 +13,7 @@ export default function Index() {
   const [logs, setLogs] = useState([]);
   const [money, setMoney] = useState(0);
   const [score, setScore] = useState(0);
-  const [achievements, setachievements] = useState(achievementsDefault);
+  const [achievements, setAchievements] = useState(achievementsDefault);
 
   const [time, setTime] = useState(0);
   useEffect(() => {
@@ -45,7 +45,10 @@ export default function Index() {
         setFields={setFields}
         time={time}
         setLogs={setLogs}
+        score={score}
         setScore={setScore}
+        achievements={achievements}
+        setAchievements={setAchievements}
         />
 
       <Shops

@@ -169,8 +169,8 @@ export const fieldsOptions = {
 };
 
 export const achievementsDefault = {
-  begginer: {
-    title: 'Begginer',
+  beginner: {
+    title: 'Beginner',
     text: 'レベル2に到達する',
     icon: 'trophy-tea',
     unlocked: true,
@@ -274,7 +274,19 @@ export function newLogs(itemNums, selectedItem) {
   });
 }
 
-export function updateachievements(achievements, achieved) {
+export const levelScore = 10;
+export function calcLevel(score) {
+  let lv = 1;
+  let nextScore = levelScore;
+  while(score >= nextScore) {
+    lv++;
+    nextScore += levelScore * lv;
+  }
+
+  return [lv, nextScore];
+}
+
+export function updateAchievements(achievements, achieved) {
   let newachievements = {...achievements};
   newachievements[achieved].achieved = true;
   let next = newachievements[achieved].next;
