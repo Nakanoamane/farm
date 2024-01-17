@@ -2,7 +2,12 @@
 
 import Style from '../../styles/modules/home.module.scss';
 
-const LogsList = ({logs}) => {
+import { useRecoilValue } from 'recoil';
+import { logsState } from '../../lib/state';
+
+
+export default function Logs() {
+	const logs = useRecoilValue(logsState);
 	const logEls = logs.map((log, index) => {
 		const className = Style[`log${log.type}`];
 		return (
@@ -10,13 +15,9 @@ const LogsList = ({logs}) => {
 		);
 	});
 
-	return ( <ul className={Style.logs}>{logEls}</ul> );
-}
-
-export default function Logs({logs}) {
 	return (
 		<div className={Style.logBalloon}>
-			<LogsList logs={logs} />
+			<ul className={Style.logs}>{logEls}</ul>
 		</div>
 	);
 }

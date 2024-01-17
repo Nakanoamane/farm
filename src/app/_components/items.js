@@ -2,12 +2,14 @@
 
 import Style from '../../styles/modules/home.module.scss';
 
-const onChangeItem = (e, setSelectedItem) => {
-  const value = e.target.value;
-  setSelectedItem(value);
-}
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { homeBalloonState, itemsState, selectedItemState,} from '../../lib/state';
 
-const ItemEls = ({items, selectedItem, setSelectedItem}) => {
+export default function Items() {
+  const homeBalloon = useRecoilValue(homeBalloonState);
+  const items = useRecoilValue(itemsState);
+  const [selectedItem, setSelectedItem] = useRecoilState(selectedItemState);
+
   const itemKeys = Object.keys(items);
   const els = itemKeys.map(key => {
     const item = items[key];
@@ -23,26 +25,18 @@ const ItemEls = ({items, selectedItem, setSelectedItem}) => {
           className={Style.radio}
           disabled={item.num === 0}
           checked={key === selectedItem}
-          onChange={(e) => onChangeItem(e, setSelectedItem)} />
+          onChange={() => setSelectedItem(key) } />
         <label htmlFor={id} className={item.className}>{item.num}</label>
       </li>
     );
   });
 
-  return (
-    <ul className={Style.items}>
-      {els}
-    </ul>
-  );
-}
 
-export default function Items({items, balloonClassName, selectedItem, setSelectedItem}) {
   return (
-    <div className={balloonClassName}>
-      <ItemEls
-        items={items}
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem} />
+    <div className={Style[homeBalloon]}>
+      <ul className={Style.items}>
+        {els}
+      </ul>
     </div>
   )
 }

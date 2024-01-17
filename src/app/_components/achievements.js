@@ -2,8 +2,13 @@
 
 import Style from '../../styles/modules/shops.module.scss';
 
-export default function Achievements({ achievements, isShow }) {
-  if(!isShow) { return null; }
+import { useRecoilValue } from 'recoil';
+import { achievementsState, selectedShopState } from '../../lib/state';
+
+export default function Achievements() {
+  const achievements = useRecoilValue(achievementsState);
+  const selectedShop = useRecoilValue(selectedShopState);
+  if(selectedShop !== 'museum') { return null; }
 
   const achievementEls = Object.keys(achievements).map((key) => {
     const achievement = achievements[key];

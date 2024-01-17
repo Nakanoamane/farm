@@ -1,18 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import { levelScore, calcLevel } from '../../lib/state';
 import Style from '../../styles/modules/home.module.scss';
+
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  balloonSizes,
+  homeBalloonState,
+  moneyState,
+  scoreState } from '../../lib/state';
+import { levelScore, calcLevel } from '../../lib/score';
 import Items from './items';
 import Logs from './logs';
 
-const balloonSizes = [ Style.balloon, Style.balloonLarge, Style.balloonSmall ];
+export default function Home() {
+  const [homeBalloon, setHomeBalloon] = useRecoilState(homeBalloonState);
+  const score = useRecoilValue(scoreState);
+  const money = useRecoilValue(moneyState);
 
-export default function Home({items, selectedItem, setSelectedItem, logs, money, score}) {
-  const [balloonClassName, setBalloonClassName] = useState(Style.balloon);
   const onClickHouse = () => {
-    const index = (balloonSizes.indexOf(balloonClassName) + 1) % 3;
-    setBalloonClassName(balloonSizes[index]);
+    const index = (balloonSizes.indexOf(homeBalloon) + 1) % 3;
+    setHomeBalloon(balloonSizes[index]);
   };
 
   const [level, nextScore] = calcLevel(score);
@@ -31,14 +38,9 @@ export default function Home({items, selectedItem, setSelectedItem, logs, money,
     <nav className={Style.nav}>
       <button type="button" className={Style.house} onClick={onClickHouse}></button>
 
-      <Items
-        items={items}
-        balloonClassName={balloonClassName}
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem}
-        />
+      <Items />
 
-      <Logs logs={logs} />
+      <Logs />
 
       <p className={Style.money}>{(money).toLocaleString()}</p>
 

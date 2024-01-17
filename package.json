@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "recoil": "^0.7.7",
     "the-new-css-reset": "^1.11.2"
   },
   "devDependencies": {

@@ -2,8 +2,12 @@
 
 import Style from '../../styles/modules/shops.module.scss';
 
-export default function Kitchen({isShow}){
-  if(!isShow) { return null; }
+import { useRecoilValue } from 'recoil';
+import { selectedShopState } from '../../lib/state';
+
+export default function Kitchen(){
+  const selectedShop = useRecoilValue(selectedShopState);
+  if(selectedShop !== 'restaurant') { return null; }
 
   return(
     <div className={Style.restaurantBalloon}>

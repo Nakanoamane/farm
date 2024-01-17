@@ -1,32 +1,33 @@
 'use client';
 
 import Style from '../../styles/modules/fields.module.scss';
-import Field from './field';
 
-const FieldsRow = (props) => {
-  let rows = [];
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { itemsState, timeState, fieldsState, selectedItemState } from '../../lib/state';
+import { updateFields } from '../../lib/fields';
+import FieldsRow from './fields_row';
 
-  props.fields.forEach((row, index) => {
-    let cells = [];
-    row.forEach((field, i) => {
-      cells[i] = <Field key={`cell-${index}-${i}`}
-        rowIndex={index}
-        cellIndex={i}
-        field={field}
-        {...props}
-        />;
-    });
-    rows[index] = <tr key={`row-${index}`} className={Style.row}>{cells}</tr>;
+export default function Fields() {
+  const [time, setTime] = useRecoilState(timeState);
+  const [fields, setFields] = useRecoilState(fieldsState);
+  const items = useRecoilValue(itemsState);
+  const selectedItem = useRecoilValue(selectedItemState);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(time + 1);
+      if(time > 0 && time % 5 === 0) {
+        setFields(updateFields(time, fields));
+      }
+    }, 1000);
+    return () => clearInterval(interval);
   });
 
-  return <tbody>{rows}</tbody>;
-}
-
-export default function Fields(props) {
 	return (
 		<section className={Style.section}>
-      <table className={`${Style[`${props.selectedItem}Table`]} ${Style[`num${props.items[props.selectedItem].num}`]}`}>
-        <FieldsRow {...props}/>
+      <table className={`${Style[`${selectedItem}Table`]} ${Style[`num${items[selectedItem].num}`]}`}>
+        <FieldsRow/>
       </table>
     </section>
 	)

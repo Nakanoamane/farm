@@ -1,13 +1,17 @@
 'use client';
 
 import Style from '../../styles/modules/shops.module.scss';
+
+import { useRecoilState } from 'recoil';
+import { selectedShopState } from '../../lib/state';
 import Achievements from './achievements';
 import Ketchen from './kitchen';
 import Checkstand from './checkstand';
-import { useState } from 'react';
 
-export default function Shops(props){
-  const [selectedShop, setSelectedShop] = useState('');
+
+export default function Shops(){
+  const [selectedShop, setSelectedShop] = useRecoilState(selectedShopState);
+
   const onClickShop = (shop) => {
     if (selectedShop === shop) {
       setSelectedShop('');
@@ -28,10 +32,7 @@ export default function Shops(props){
           onClick={() => onClickShop('museum')}
           ></button>
 
-        <Achievements
-          achievements={props.achievements}
-          isShow={selectedShop === 'museum'}
-          />
+        <Achievements/>
       </div>
 
       <div className={shopClassName('restaurant')}>
@@ -41,9 +42,7 @@ export default function Shops(props){
           onClick={() => onClickShop('restaurant')}
           ></button>
 
-        <Ketchen
-          isShow={selectedShop === 'restaurant'}
-          />
+        <Ketchen/>
       </div>
 
       <div className={shopClassName('grocer')}>
@@ -53,9 +52,7 @@ export default function Shops(props){
           onClick={() => onClickShop('grocer')}
           ></button>
 
-        <Checkstand
-          isShow={selectedShop === 'grocer'}
-          />
+        <Checkstand/>
       </div>
     </nav>
   );
