@@ -18,80 +18,97 @@ export const itemsDefault = {
     className: Style.wheat,
     type: 'crop',
     num: 5,
-    totalNum: 5
+    totalNum: 5,
+    buy: 20,
+    sell: 1
   },
   poultry: {
     className: Style.poultry,
     type: 'livestock',
     num: 3,
-    totalNum: 3
+    totalNum: 3,
+    buy: 100,
+    sell: 3
   },
   cow: {
     className: Style.cow,
     type: 'livestock',
     num: 3,
-    totalNum: 3
+    totalNum: 3,
+    buy: 100,
+    sell: 3
   },
   flour: {
     className: Style.flour,
     type: 'food',
-    num: 0
+    num: 0,
+    sell: 5,
   },
   milk: {
     className: Style.milk,
     type: 'food',
-    num: 0
+    num: 0,
+    sell: 5,
   },
   egg: {
     className: Style.egg,
     type: 'food',
-    'num': 0
+    num: 0,
+    sell: 5,
   },
   chicken: {
     className: Style.chicken,
     type: 'food',
-    num: 0
+    num: 0,
+    sell: 10,
   },
   beaf: {
     className: Style.beaf,
     type: 'food',
-    num: 0
+    num: 0,
+    sell: 10,
   },
   bread: {
     className: Style.bread,
     type: 'food',
     num: 0,
-    recipe: [ 'flour', 'flour', 'flour' ]
+    recipe: [ 'flour', 'flour', 'flour' ],
+    sell: 30,
   },
   pancake: {
     className: Style.pancake,
     type: 'food',
     num: 0,
-    recipe: [ 'flour', 'egg', 'milk' ]
+    recipe: [ 'flour', 'egg', 'milk' ],
+    sell: 50,
   },
   roastChicken: {
     className: Style.roastChicken,
     type: 'food',
     num: 0,
-    recipe: [ 'chicken' ]
+    recipe: [ 'chicken' ],
+    sell: 30,
   },
   cheese: {
     className: Style.cheese,
     type: 'food',
     num: 0,
-    recipe: [ 'milk', 'milk', 'milk' ]
+    recipe: [ 'milk', 'milk', 'milk' ],
+    sell: 30,
   },
   butter: {
     className: Style.butter,
     type: 'food',
     num: 0,
-    recipe: [ 'milk', 'milk' ]
+    recipe: [ 'milk', 'milk' ],
+    sell: 20,
   },
   steak: {
     className: Style.steak,
     type: 'food',
     num: 0,
-    recipe: [ 'beaf' ]
+    recipe: [ 'beaf' ],
+    sell: 30,
   },
 };
 

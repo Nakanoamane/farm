@@ -51,7 +51,7 @@ export default function Home() {
 
       <Logs />
 
-      <p className={Style.money}>{(money).toLocaleString()}</p>
+      <p className={Style.money}>{money.toLocaleString()}</p>
 
       <div className={Style.score} style={scoreStyle()}>
         <p className={Style.level}>
