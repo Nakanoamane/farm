@@ -2,8 +2,8 @@
 
 import Style from '../../styles/modules/shops.module.scss';
 
-import { useRecoilState } from 'recoil';
-import { selectedShopState } from '../../lib/state';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { selectedShopState, homeBalloonState } from '../../lib/state';
 import Achievements from './achievements';
 import Ketchen from './kitchen';
 import Checkstand from './checkstand';
@@ -11,13 +11,20 @@ import Checkstand from './checkstand';
 
 export default function Shops(){
   const [selectedShop, setSelectedShop] = useRecoilState(selectedShopState);
+  const setHomeBalloon = useSetRecoilState(homeBalloonState);
 
-  const onClickShop = (shop) => {
-    if (selectedShop === shop) {
-      setSelectedShop('');
-    } else {
-      setSelectedShop(shop);
+
+  const onClickShop = (shop, itemBalloon) => {
+    let selected =  '';
+    let balloon = 'balloon';
+    if(selectedShop !== shop){
+      selected = shop;
+      if (itemBalloon) {
+        balloon = itemBalloon;
+      }
     }
+    setSelectedShop(selected);
+    setHomeBalloon(balloon);
   }
   const shopClassName = (shop) => {
     return `${Style.shop} ${selectedShop === shop ? Style.selectedShop : ''}`;
@@ -29,7 +36,7 @@ export default function Shops(){
         <button
           type="button"
           className={Style.museum}
-          onClick={() => onClickShop('museum')}
+          onClick={() => onClickShop('museum', false)}
           ></button>
 
         <Achievements/>
@@ -39,7 +46,7 @@ export default function Shops(){
         <button
           type="button"
           className={Style.restaurant}
-          onClick={() => onClickShop('restaurant')}
+          onClick={() => onClickShop('restaurant', 'balloonRestaurant')}
           ></button>
 
         <Ketchen/>
@@ -49,7 +56,7 @@ export default function Shops(){
         <button
           type="button"
           className={Style.grocer}
-          onClick={() => onClickShop('grocer')}
+          onClick={() => onClickShop('grocer', 'balloonGrocer')}
           ></button>
 
         <Checkstand/>

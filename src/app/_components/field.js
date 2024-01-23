@@ -9,12 +9,10 @@ import {
 	selectedItemState,
 	logsState,
 	scoreState,
-	timeState,
-	achievementsState } from '../../lib/state';
+	timeState } from '../../lib/state';
 import { fieldsOptions, newField } from '../../lib/fields';
 import { updateItems } from '../../lib/items';
-import { updateAchievements, findLevelAchievement } from '../../lib/achievements';
-import { newLogs } from '../../lib/logs';
+import { newItemLogs } from '../../lib/logs';
 
 
 export default function Field({ rowIndex, cellIndex }) {
@@ -26,7 +24,6 @@ export default function Field({ rowIndex, cellIndex }) {
 	const [logs, setLogs] = useRecoilState(logsState);
 	const [score, setScore] = useRecoilState(scoreState);
 	const time = useRecoilValue(timeState);
-	const [achievements, setAchievements] = useRecoilState(achievementsState);
 
 	const changeField = () => {
 		setFields(prev => {
@@ -41,16 +38,8 @@ export default function Field({ rowIndex, cellIndex }) {
 	}
 
 	const addLogs = (newItems) => {
-		const add = newLogs(newItems, selectedItem);
-		setLogs(add.concat([...logs]));
-	}
-
-	const achieve = () => {
-		const achievement = findLevelAchievement(achievements, score);
-		if(achievement) {
-			const newAchievements = updateAchievements(achievements, achievement);
-			setAchievements(newAchievements);
-		}
+		const addLogs = newItemLogs(items, newItems);
+		setLogs(addLogs.concat([...logs]));
 	}
 
 	const addScore = (newItems) => {
@@ -73,7 +62,6 @@ export default function Field({ rowIndex, cellIndex }) {
 		changeItems(newItems);
 		addLogs(newItems);
 		addScore(newItems);
-		achieve();
 	};
 
 	const onCickField =  () => {

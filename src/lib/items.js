@@ -17,17 +17,20 @@ export const itemsDefault = {
   wheat: {
     className: Style.wheat,
     type: 'crop',
-    num: 10
+    num: 5,
+    totalNum: 5
   },
   poultry: {
     className: Style.poultry,
     type: 'livestock',
-    num: 10
+    num: 3,
+    totalNum: 3
   },
   cow: {
     className: Style.cow,
     type: 'livestock',
-    num: 10
+    num: 3,
+    totalNum: 3
   },
   flour: {
     className: Style.flour,
@@ -53,6 +56,42 @@ export const itemsDefault = {
     className: Style.beaf,
     type: 'food',
     num: 0
+  },
+  bread: {
+    className: Style.bread,
+    type: 'food',
+    num: 0,
+    recipe: [ 'flour', 'flour', 'flour' ]
+  },
+  pancake: {
+    className: Style.pancake,
+    type: 'food',
+    num: 0,
+    recipe: [ 'flour', 'egg', 'milk' ]
+  },
+  roastChicken: {
+    className: Style.roastChicken,
+    type: 'food',
+    num: 0,
+    recipe: [ 'chicken' ]
+  },
+  cheese: {
+    className: Style.cheese,
+    type: 'food',
+    num: 0,
+    recipe: [ 'milk', 'milk', 'milk' ]
+  },
+  butter: {
+    className: Style.butter,
+    type: 'food',
+    num: 0,
+    recipe: [ 'milk', 'milk' ]
+  },
+  steak: {
+    className: Style.steak,
+    type: 'food',
+    num: 0,
+    recipe: [ 'beaf' ]
   },
 };
 

@@ -4,21 +4,29 @@ import Style from '../../styles/modules/fields.module.scss';
 
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { itemsState, timeState, fieldsState, selectedItemState } from '../../lib/state';
+import {
+  itemsState,
+  timeState,
+  isPlayingState,
+  fieldsState,
+  selectedItemState } from '../../lib/state';
 import { updateFields } from '../../lib/fields';
 import FieldsRow from './fields_row';
 
 export default function Fields() {
   const [time, setTime] = useRecoilState(timeState);
+  const isPlaying = useRecoilValue(isPlayingState);
   const [fields, setFields] = useRecoilState(fieldsState);
   const items = useRecoilValue(itemsState);
   const selectedItem = useRecoilValue(selectedItemState);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(time + 1);
-      if(time > 0 && time % 5 === 0) {
-        setFields(updateFields(time, fields));
+      if (isPlaying) {
+        setTime(time + 1);
+        if( time > 0 ) {
+          setFields(updateFields(time, fields));
+        }
       }
     }, 1000);
     return () => clearInterval(interval);

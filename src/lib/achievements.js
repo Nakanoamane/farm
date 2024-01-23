@@ -6,28 +6,31 @@ export const achievementsDefault = {
     title: 'Beginner',
     text: 'レベル2に到達する',
     icon: 'trophy-tea',
-    unlocked: true,
+    locked: false,
     achieved: false,
     next: 'amateur'
   },
   amateur: {
     title: 'Amateur',
     text: 'レベル7に到達する',
-    unlocked: false,
+    icon: 'trophy-mint',
+    locked: true,
     achieved: false,
     next: 'expert'
   },
   expert: {
     title: 'Expert',
     text: 'レベル15に到達する',
-    unlocked: false,
+    icon: 'trophy-lime',
+    locked: true,
     achieved: false,
     next: 'master'
   },
   master: {
     title: 'Master',
     text: 'レベル30に到達する',
-    unlocked: false,
+    icon: 'trophy-mustard',
+    locked: true,
     achieved: false,
   },
 };
@@ -35,8 +38,9 @@ export const achievementsDefault = {
 export function updateAchievements(achievements, achieved) {
   let newachievements = _.cloneDeep(achievements);
   newachievements[achieved].achieved = true;
+  newachievements[achieved].locked = false;
   let next = newachievements[achieved].next;
-  newachievements[next].unlocked = true;
+  newachievements[next].locked = false;
   return newachievements;
 }
 

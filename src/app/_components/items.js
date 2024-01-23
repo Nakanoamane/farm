@@ -14,6 +14,8 @@ export default function Items() {
   const els = itemKeys.map(key => {
     const item = items[key];
     const id = `item_${key}`;
+    const isSecret = item.num !== undefined && !item.totalNum;
+    const className = isSecret ? Style.secret : item.className;
 
     return (
       <li key={id}>
@@ -25,8 +27,13 @@ export default function Items() {
           className={Style.radio}
           disabled={item.num === 0}
           checked={key === selectedItem}
-          onChange={() => setSelectedItem(key) } />
-        <label htmlFor={id} className={item.className}>{item.num}</label>
+          onChange={() => setSelectedItem(key) }
+          />
+
+        <label htmlFor={id} className={className}>
+          <span className={Style.itemName}>{ isSecret ? '' : key }</span>
+          { item.num ? item.num : '' }
+        </label>
       </li>
     );
   });

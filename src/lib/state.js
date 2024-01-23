@@ -1,13 +1,8 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { itemsDefault } from './items';
 import { fieldsDefault } from './fields';
 import { achievementsDefault } from './achievements';
 
-export const balloonSizes = [
-  'balloon',
-  'balloonLarge',
-  'balloonSmall'
-];
 
 export const homeBalloonState = atom({
   key: 'homeBalloon',
@@ -39,6 +34,11 @@ export const timeState = atom({
   default: 0,
 });
 
+export const isPlayingState = atom({
+  key: 'timeStatus',
+  default: true,
+});
+
 export const logsState = atom({
   key: 'logs',
   default: [],
@@ -56,5 +56,15 @@ export const scoreState = atom({
 
 export const selectedShopState = atom({
   key: 'selectedShop',
+  default: '',
+});
+
+export const ingredientsState = atom({
+  key: 'ingredients',
+  default: [],
+});
+
+export const dishState = atom({
+  key: 'dish',
   default: '',
 });

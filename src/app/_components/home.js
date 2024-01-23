@@ -4,13 +4,18 @@ import Style from '../../styles/modules/home.module.scss';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
-  balloonSizes,
   homeBalloonState,
   moneyState,
   scoreState } from '../../lib/state';
 import { levelScore, calcLevel } from '../../lib/score';
 import Items from './items';
 import Logs from './logs';
+
+const balloonSizes = [
+  'balloon',
+  'balloonLarge',
+  'balloonSmall'
+];
 
 export default function Home() {
   const [homeBalloon, setHomeBalloon] = useRecoilState(homeBalloonState);
@@ -36,7 +41,11 @@ export default function Home() {
 
   return (
     <nav className={Style.nav}>
-      <button type="button" className={Style.house} onClick={onClickHouse}></button>
+      <button
+        type="button"
+        className={Style.house}
+        onClick={onClickHouse}
+        ></button>
 
       <Items />
 

@@ -2,13 +2,27 @@
 
 import Style from '../../styles/modules/shops.module.scss';
 
-import { useRecoilValue } from 'recoil';
-import { achievementsState, selectedShopState } from '../../lib/state';
+import { useEffect } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { scoreState, achievementsState, selectedShopState } from '../../lib/state';
+import { findLevelAchievement, updateAchievements } from '../../lib/achievements';
 
 export default function Achievements() {
-  const achievements = useRecoilValue(achievementsState);
+  const score = useRecoilValue(scoreState);
+  const [achievements, setAchievements] = useRecoilState(achievementsState);
   const selectedShop = useRecoilValue(selectedShopState);
-  if(selectedShop !== 'museum') { return null; }
+
+  useEffect(() => {
+    achieve();
+  }, [score]);
+
+  const achieve = () => {
+		const achievement = findLevelAchievement(achievements, score);
+		if(achievement) {
+			const newAchievements = updateAchievements(achievements, achievement);
+			setAchievements(newAchievements);
+		}
+	}
 
   const achievementEls = Object.keys(achievements).map((key) => {
     const achievement = achievements[key];
@@ -17,7 +31,7 @@ export default function Achievements() {
       classNames.push(Style[achievement.icon]);
     }
     const title = achievement.achieved ? achievement.title : '???';
-    const text = achievement.achieved || achievement.unlocked ? achievement.text : '???';
+    const text = achievement.locked ? '???' : achievement.text ;
     return (
       <li key={`acv-${key}`} className={classNames.join(' ')}>
         <p className={Style.acvTitle}>{title}</p>
@@ -26,6 +40,7 @@ export default function Achievements() {
     );
   });
 
+  if(selectedShop !== 'museum') { return null; }
   return (
     <div className={Style.museumBalloon}>
       <ul className={Style.achievements}>

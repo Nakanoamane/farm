@@ -1,0 +1,90 @@
+@import '../settings.scss';
+
+@mixin activeItem {
+	width: 81px;
+	height: 81px;
+	margin: -3px;
+	padding-top: 57px;
+	border: 3px solid $color-black;
+}
+
+@mixin disabledItem {
+	opacity: 0.5;
+	border: none;
+	margin: 0;
+	width: 75px;
+	height: 75px;
+	padding-top: 57px;
+	cursor: not-allowed;
+
+	.itemName {
+		display: none;
+	}
+}
+
+@mixin item {
+	display: block;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 12px;
+	padding-top: 57px;
+	font-family: $font-en;
+	font-weight: 600;
+	font-size: 12px;
+	position: relative;
+
+	.itemName {
+		display: none;
+		position: absolute;
+		top: -4px;
+		right: -2px;
+		padding: 2px 5px;
+		background: $color-white;
+		border-radius: 2px;
+		border: 1px solid $color-black;
+		color: $color-black;
+		font-size: 10px;
+	}
+
+	&:hover {
+		@include activeItem;
+		padding-top: 60px;
+		border: none;
+		cursor: pointer;
+
+		.itemName {
+			display: inline-block;
+		}
+	}
+	&:active {
+		@include activeItem;
+	}
+	&:disabled {
+		@include disabledItem;
+	}
+}
+
+@each $item in $items {
+	.#{$item} {
+		@include item;
+		background: url('~/public/images/items/#{$item}.webp') no-repeat center/cover;
+	}
+
+	.icon-#{$item} {
+		background: url('~/public/images/cursors/#{$item}.svg') no-repeat center/contain;
+	}
+
+	input:disabled + label.#{$item} {
+		@include disabledItem;
+	}
+
+	input:checked + label.#{$item} {
+		@include activeItem;
+	}
+}
+
+.icon-secret {
+	opacity: .5;
+}

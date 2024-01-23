@@ -4,7 +4,7 @@ export const fieldsOptions = {
   plowed: {
     className: Style.plowed,
     grow: ['green'],
-    growSec: 20,
+    growSec: 30,
     items: {
       hoe: { field: 'green' },
       wheat: { field: 'wheat1' },
@@ -13,7 +13,7 @@ export const fieldsOptions = {
   green: {
     className: Style.green,
     grow: ['grass1', 'grass2', 'grass3'],
-    growSec: 60,
+    growSec: 120,
     items: {
       hoe: { field: 'plowed' },
       poultry: { field: 'poultry1' },
@@ -49,21 +49,21 @@ export const fieldsOptions = {
   wheat2: {
     className: Style.wheat2,
     grow: ['wheat3'],
-    growSec: 5,
+    growSec: 10,
     items: {
-      sickle: { field: 'plowed', items: { wheat: 2 } },
+      sickle: { field: 'plowed', items: { wheat: 1 } },
     }
   },
   wheat3: {
     className: Style.wheat3,
     items: {
-      sickle: { field: 'plowed', items: { wheat: 3, flour: 1 } },
+      sickle: { field: 'plowed', items: { wheat: 2, flour: 2 } },
     }
   },
   poultry1: {
     className: Style.poultry1,
     grow: ['poultry2'],
-    growSec: 5,
+    growSec: 10,
     items: {
       hand: { field: 'green', items: { poultry: 1 } },
       sickle: { field: 'green', items: { chicken: 1 } },
@@ -72,7 +72,7 @@ export const fieldsOptions = {
   poultry2: {
     className: Style.poultry2,
     grow: ['poultry3'],
-    growSec: 10,
+    growSec: 20,
     items: {
       hand: { field: 'poultry1', items: { egg: 1 } },
       sickle: { field: 'green', items: { chicken: 1, egg: 1 } },
@@ -88,7 +88,7 @@ export const fieldsOptions = {
   cow1: {
     className: Style.cow1,
     grow: ['cow2'],
-    growSec: 5,
+    growSec: 10,
     items: {
       hand: { field: 'green', items: { cow: 1 } },
       sickle: { field: 'green', items: { beaf: 1 } },
@@ -97,7 +97,7 @@ export const fieldsOptions = {
   cow2: {
     className: Style.cow2,
     grow: ['cow3'],
-    growSec: 10,
+    growSec: 20,
     items: {
       hand: { field: 'cow1', items: { milk: 1 } },
       sickle: { field: 'green', items: { beaf: 1, milk: 1 } },

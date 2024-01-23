@@ -2,6 +2,7 @@ $font-ja: 'YuGothic','Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ
 $font-en: 'Helvetica','Arial',sans-serif;
 
 $color-white: #F4F2E9;
+$color-gray: #AAA8A0;
 $color-black: #333;
 
 $color-lime: #DDE070;
@@ -25,6 +26,7 @@ $color-ocher: #AA8E50;
 }
 
 $items: (
+	'secret',
 	'hand',
 	'hoe',
 	'sickle',
@@ -36,13 +38,19 @@ $items: (
 	'egg',
 	'chicken',
 	'beaf',
+	'bread',
+	'pancake',
+	'roastChicken',
+	'cheese',
+	'butter',
+	'steak'
 );
 
 $fields: (
-	'grass',
-	'wheat',
-	'poultry',
-	'cow'
+	grass: 3,
+	wheat: 3,
+	poultry: 3,
+	cow: 3
 );
 
 $fieldItems: (

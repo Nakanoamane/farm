@@ -75,12 +75,12 @@
 	}
 }
 
-@mixin fields($field) {
-	@for $i from 1 through 3 {
+@mixin fields($field, $num) {
+	@for $i from 1 through $num {
 		@include field($field, $i);
 	}
 }
 
-@each $field in $fields {
-	@include fields($field);
+@each $field, $num in $fields {
+	@include fields($field, $num);
 }
