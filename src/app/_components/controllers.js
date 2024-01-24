@@ -3,12 +3,17 @@
 import Style from '../../styles/modules/shops.module.scss';
 
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { selectedShopState, timeState, isPlayingState } from '../../lib/state';
+import {
+	selectedShopState,
+	timeState,
+	timeMultipleState,
+	isPlayingState } from '../../lib/state';
 
 
-export default function Controlls() {
+export default function Controllers() {
 	const selectedShop = useRecoilValue(selectedShopState);
 	const time = useRecoilValue(timeState);
+	const [timeMultiple, setTimeMultiple] = useRecoilState(timeMultipleState);
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
 	const displayTime = () => {
@@ -35,13 +40,18 @@ export default function Controlls() {
 
 				<button
 					className={Style.pause}
-					onClick={() => setIsPlaying(false)}
+					onClick={() => {setIsPlaying(false); setTimeMultiple(1);}}
 					disabled={!isPlaying}
 					></button>
 				<button
 					className={Style.play}
-					onClick={() => setIsPlaying(true)}
-					disabled={isPlaying}
+					onClick={() => {setIsPlaying(true); setTimeMultiple(1);}}
+					disabled={isPlaying && timeMultiple === 1}
+					></button>
+				<button
+					className={Style.double}
+					onClick={() => {setIsPlaying(true); setTimeMultiple(2);}}
+					disabled={timeMultiple === 2}
 					></button>
 			</div>
 

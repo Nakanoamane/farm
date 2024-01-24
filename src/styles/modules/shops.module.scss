@@ -87,7 +87,10 @@
 		.play {
 			background: url('~/public/images/icons/play.svg') no-repeat center/50%;
 		}
-		.pause, .play {
+		.double {
+			background: url('~/public/images/icons/double.svg') no-repeat center/60%;
+		}
+		.pause, .play, .double {
 			width: 75px;
 			height: 75px;
 			border: 3px solid $color-black;
@@ -202,6 +205,7 @@
 				aspect-ratio: 1/1;
 				border-radius: 50%;
 				padding: 5px;
+				position: relative;
 
 				&:hover {
 					cursor: pointer;

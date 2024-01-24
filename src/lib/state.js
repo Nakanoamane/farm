@@ -34,6 +34,11 @@ export const timeState = atom({
   default: 0,
 });
 
+export const timeMultipleState = atom({
+  key: 'timeMultiple',
+  default: 1,
+});
+
 export const isPlayingState = atom({
   key: 'timeStatus',
   default: true,

@@ -7,7 +7,7 @@ import { selectedShopState, homeBalloonState } from '../../lib/state';
 import Achievements from './achievements';
 import Ketchen from './kitchen';
 import Checkstand from './checkstand';
-import Controlls from './controlls';
+import Controllers from './controllers';
 
 
 export default function Shops(){
@@ -39,7 +39,7 @@ export default function Shops(){
           className={Style.clock}
           onClick={() => onClickShop('clock', false)}
           ></button>
-          <Controlls/>
+          <Controllers/>
       </div>
 
       <div className={shopClassName('museum')}>

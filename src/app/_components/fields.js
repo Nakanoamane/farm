@@ -5,16 +5,16 @@ import Style from '../../styles/modules/fields.module.scss';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
-  itemsState,
   timeState,
+  timeMultipleState,
   isPlayingState,
-  fieldsState,
-  selectedItemState } from '../../lib/state';
+  fieldsState } from '../../lib/state';
 import { updateFields } from '../../lib/fields';
 import FieldsRow from './fields_row';
 
 export default function Fields() {
   const [time, setTime] = useRecoilState(timeState);
+  const timeMultiple = useRecoilValue(timeMultipleState);
   const isPlaying = useRecoilValue(isPlayingState);
   const [fields, setFields] = useRecoilState(fieldsState);
 
@@ -26,7 +26,7 @@ export default function Fields() {
           setFields(updateFields(time, fields));
         }
       }
-    }, 1000);
+    }, 1000 / timeMultiple);
     return () => clearInterval(interval);
   });
 
