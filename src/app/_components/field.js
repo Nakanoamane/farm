@@ -67,16 +67,20 @@ export default function Field({ rowIndex, cellIndex }) {
 	};
 
 	const onCickField =  () => {
-		const clickable = items[selectedItem].num !== undefined && items[selectedItem].num <= 0;
-		if(clickable || !fieldOption.items || !fieldOption.items[selectedItem] ) return;
+		if(!isClickable() ) return;
 
 		changeField();
 		getAndUseItems();
 	}
 
+	const isClickable = () => {
+		return fieldOption.items && fieldOption.items[selectedItem] &&
+			(items[selectedItem].num === undefined || items[selectedItem].num > 0);
+	};
+
 	const className = () => {
-		const cn = [Style.cell, Style[`num-${items[selectedItem.num]}`]];
-		if(fieldOption.items && fieldOption.items[selectedItem]) {
+		const cn = [Style.cell];
+		if(isClickable()) {
 			cn.push(Style[`cursor-${selectedItem}`]);
 		} else {
 			cn.push(Style['is-disabled']);

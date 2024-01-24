@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4f2e9;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="shops">
+    <g id="controll">
+      <g>
+        <rect class="cls-1" width="11" height="40" rx="2" ry="2"/>
+        <rect class="cls-1" x="21" width="11" height="40" rx="2" ry="2"/>
+      </g>
+    </g>
+  </g>
+</svg>

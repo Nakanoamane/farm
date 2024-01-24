@@ -54,18 +54,66 @@
 
 @mixin balloon {
 	position: absolute;
-	top: 10px;
+	top: 30px;
 	right: 130px;
 	border: $color-black 3px solid;
 	border-radius: 8px;
 	background: $color-white;
 	padding: 10px;
 	width: 380px;
-	height: 730px;
+	height: 200px;
+}
+
+.clockBalloon {
+	@include balloon;
+
+	.times {
+		margin-top: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 15px;
+
+		.time {
+			width: 100%;
+			font-family: $font-en;
+			font-size: 30px;
+			font-weight: 600;
+			text-align: center;
+		}
+		.pause {
+			background: url('~/public/images/icons/pause.svg') no-repeat center/50%;
+		}
+		.play {
+			background: url('~/public/images/icons/play.svg') no-repeat center/50%;
+		}
+		.pause, .play {
+			width: 75px;
+			height: 75px;
+			border: 3px solid $color-black;
+			border-radius: 8px;
+			margin: 10px;
+			background-color: $color-cobalt;
+
+			&:hover:not(:disabled) {
+				cursor: pointer;
+				width: 81px;
+				height: 81px;
+				margin: 6px 8px 4px 6px;
+			}
+			&:disabled {
+				border: none;
+				background-color: $color-gray;
+			}
+		}
+	}
 }
 
 .museumBalloon {
 	@include balloon;
+	top: -90px;
+	width: 480px;
+	height: 720px;
 
 	.achievement {
 		padding: 10px 10px 10px 80px;
@@ -102,7 +150,7 @@
 .restaurantBalloon {
 	@include balloon;
 	background: $color-mustard;
-	top: -100px;
+	top: -210px;
 	width: 730px;
 	height: 480px;
 	display: grid;
@@ -218,7 +266,7 @@
 
 .grocerBalloon {
 	@include balloon;
-	top: -220px;
+	top: -330px;
 	width: 580px;
 	height: 720px;
 	background: $color-ocher;

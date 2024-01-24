@@ -17,8 +17,6 @@ export default function Fields() {
   const [time, setTime] = useRecoilState(timeState);
   const isPlaying = useRecoilValue(isPlayingState);
   const [fields, setFields] = useRecoilState(fieldsState);
-  const items = useRecoilValue(itemsState);
-  const selectedItem = useRecoilValue(selectedItemState);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,7 +31,7 @@ export default function Fields() {
   });
 
 	return (
-		<section className={Style.section}>
+		<section className={`${Style.section} ${isPlaying ? '' : Style.pause}`}>
       <table className={Style.table}>
         <FieldsRow/>
       </table>
