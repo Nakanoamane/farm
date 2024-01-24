@@ -49,7 +49,7 @@ export function findLevelAchievement(achievements, score) {
   const levelMap = {
     beginner: 2,
     amateur: 7,
-    expart: 15,
+    expert: 15,
     master: 30,
   };
   return Object.keys(levelMap).find((key) => {
