@@ -144,16 +144,7 @@
 			align-items: center;
 			padding: 75px 50px 45px;
 			gap: 5px;
-
-			$a: url('~/public/images/shops/pot1.webp') no-repeat center/contain;
-			$b: url('~/public/images/shops/pot2.webp') no-repeat center/contain;
-			@keyframes anime-pot {
-				0% { background: $a; }
-				49% { background: $a; }
-				50% { background: $b; }
-				100% { background: $b; }
-			}
-			animation: anime-pot 1s infinite alternate;
+			@include animate2Img;
 
 			.ingredient {
 				min-width: 50px;

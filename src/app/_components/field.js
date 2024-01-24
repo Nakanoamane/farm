@@ -2,7 +2,7 @@
 
 import Style from '../../styles/modules/fields.module.scss';
 import _ from 'lodash';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
 	fieldsState,
 	itemsState,
@@ -13,6 +13,8 @@ import {
 import { fieldsOptions, newField } from '../../lib/fields';
 import { updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
+import Image from 'next/image';
+import { imagePath } from '../../lib/image';
 
 
 export default function Field({ rowIndex, cellIndex }) {
@@ -72,10 +74,37 @@ export default function Field({ rowIndex, cellIndex }) {
 		getAndUseItems();
 	}
 
+	const className = () => {
+		const cn = [Style.cell, Style[`num-${items[selectedItem.num]}`]];
+		if(fieldOption.items && fieldOption.items[selectedItem]) {
+			cn.push(Style[`cursor-${selectedItem}`]);
+		} else {
+			cn.push(Style['is-disabled']);
+		}
+		return cn.join(' ');
+	};
+
 	return (
 		<td
-			className={`${Style.cell} ${fieldOption.className}`}
+			className={className()}
 			onClick={onCickField}
-			></td>
+			>
+			<div className={Style.imageBox}>
+				<Image
+					src={imagePath(`images/fields/${field.field}-a.webp`)}
+					className={Style.imageA}
+					width={75}
+					height={75}
+					alt={field.field}
+					/>
+				<Image
+					src={imagePath(`images/fields/${field.field}-b.webp`)}
+					className={Style.imageB}
+					width={75}
+					height={75}
+					alt={field.field}
+					/>
+			</div>
+		</td>
 	)
 }

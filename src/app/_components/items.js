@@ -15,7 +15,7 @@ export default function Items() {
     const item = items[key];
     const id = `item_${key}`;
     const isSecret = item.num !== undefined && !item.totalNum;
-    const className = isSecret ? Style.secret : item.className;
+    const className = isSecret ? Style.secret : Style[key];
 
     return (
       <li key={id}>

@@ -1,40 +1,13 @@
 @import '../settings.scss';
+@import '../mxin.scss';
 
-.section {
-	width: 900px;
-}
-
-@mixin table {
+.table {
 	border: 3px solid $color-black;
 	border-radius: 8px;
 	background: $color-tea;
 	border-spacing: 0;
 	border-collapse: separate;
-	width: 900px;
 	overflow: hidden;
-}
-
-@each $item in $items {
-	.#{$item}Table {
-		@include table;
-
-		@each $field, $is in $fieldItems {
-			.#{$field}:hover {
-				cursor: not-allowed;
-			}
-			@each $i in $is {
-				@if $item == $i {
-					.#{$field}:hover {
-						cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
-					}
-
-					&.num0 .#{$field}:hover {
-						cursor: not-allowed;
-					}
-				}
-			}
-		}
-	}
 }
 
 .row + .row .cell{
@@ -42,45 +15,23 @@
 }
 
 .cell {
-	width: 75px;
-	height: 75px;
+	@each $item in $items {
+		&.cursor-#{$item} {
+			cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
+		}
+	}
+
+	&.is-disabled, &.num0 {
+		cursor: not-allowed;
+	}
+
+	.imageBox{
+		width: 75px;
+		height: 75px;
+		@include animate2Img;
+	}
 }
 
 .cell + .cell {
 	border-left: 1px solid $color-black;
-}
-
-.green {
-	background: $color-tea;
-}
-
-.plowed {
-	background: url('~/public/images/fields/plowed.webp') no-repeat center/cover;
-}
-
-@mixin field($field, $i) {
-	$a: url('~/public/images/fields/#{$field}#{$i}-a.webp') no-repeat center/cover;
-	$b: url('~/public/images/fields/#{$field}#{$i}-b.webp') no-repeat center/cover;
-
-	@keyframes anime-#{$field}-#{$i} {
-		0% { background: $a; }
-		49% { background: $a; }
-		50% { background: $b; }
-		100% { background: $b; }
-	}
-
-	.#{$field}#{$i} {
-		background: $a;
-		animation: anime-#{$field}-#{$i} 1s infinite alternate;
-	}
-}
-
-@mixin fields($field, $num) {
-	@for $i from 1 through $num {
-		@include field($field, $i);
-	}
-}
-
-@each $field, $num in $fields {
-	@include fields($field, $num);
 }

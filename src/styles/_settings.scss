@@ -46,30 +46,6 @@ $items: (
 	'steak'
 );
 
-$fields: (
-	grass: 3,
-	wheat: 3,
-	poultry: 3,
-	cow: 3
-);
-
-$fieldItems: (
-	plowed: ( 'hoe', 'wheat' ),
-	green: ( 'hoe', 'poultry', 'cow' ),
-	grass1: ( 'sickle' ),
-	grass2: ( 'sickle' ),
-	grass3: ( 'sickle' ),
-	wheat1: ( 'sickle' ),
-	wheat2: ( 'sickle' ),
-	wheat3: ( 'sickle' ),
-	poultry1: ( 'hand', 'sickle' ),
-	poultry2: ( 'hand', 'sickle' ),
-	poultry3: ( 'hand', 'sickle' ),
-	cow1: ( 'hand', 'sickle'),
-	cow2: ( 'hand', 'sickle'),
-	cow3: ( 'hand', 'sickle'),
-);
-
 $logTypes: (
 	GET: $color-terracotta,
 	NEW: $color-tea,

@@ -16,7 +16,7 @@ export const itemsState = atom({
 
 export const selectedItemState = atom({
   key: 'selectedItem',
-  default: 'hand',
+  default: 'hoe',
 });
 
 export const fieldsState = atom({

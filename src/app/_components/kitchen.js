@@ -17,6 +17,8 @@ import Recipes from './recipes';
 import { updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 import { recipeItems } from '../../lib/kitchen';
+import Image from 'next/image';
+import { imagePath } from '../../lib/image';
 
 export default function Kitchen(){
   const [items, setItems] = useRecoilState(itemsState);
@@ -137,6 +139,21 @@ export default function Kitchen(){
 
       <div className={Style.stove}>
         <div className={Style.pot}>
+        <Image
+          src={imagePath('images/shops/pot1.webp')}
+          className={Style.imageA}
+          width={580}
+          height={533}
+          alt="pot"
+          />
+        <Image
+          src={imagePath('images/shops/pot2.webp')}
+          className={Style.imageB}
+          width={580}
+          height={533}
+          alt="pot"
+          />
+
           {ingEls}
 
           <button

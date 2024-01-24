@@ -19,11 +19,11 @@ When referring to it by name from a component, prefix it with `*.module.scss`.
 
 ```.js
 import Image from 'next/image'
-import imagePath from '../lib/image';
+import { imagePath } from '../lib/image';
 
 export default function Foo() {
 	return (
-		<Image src={imagePath('image.svg')} />
+		<Image src={imagePath('image.svg')} width={100} height={100} />
   )
 }
 ```

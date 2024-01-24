@@ -34,7 +34,7 @@ export default function Fields() {
 
 	return (
 		<section className={Style.section}>
-      <table className={`${Style[`${selectedItem}Table`]} ${Style[`num${items[selectedItem].num}`]}`}>
+      <table className={Style.table}>
         <FieldsRow/>
       </table>
     </section>
