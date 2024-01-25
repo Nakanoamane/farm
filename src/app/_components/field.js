@@ -11,7 +11,7 @@ import {
 	scoreState,
 	timeState } from '../../lib/state';
 import { fieldsOptions, newField } from '../../lib/fields';
-import { updateItems } from '../../lib/items';
+import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
@@ -75,7 +75,7 @@ export default function Field({ rowIndex, cellIndex }) {
 
 	const isClickable = () => {
 		return fieldOption.items && fieldOption.items[selectedItem] &&
-			(items[selectedItem].num === undefined || items[selectedItem].num > 0);
+			(itemOptions[selectedItem].type === 'tool' || items[selectedItem].num > 0);
 	};
 
 	const className = () => {

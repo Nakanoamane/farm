@@ -5,7 +5,7 @@ import Style from '../../styles/modules/shops.module.scss';
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { scoreState, achievementsState, selectedShopState } from '../../lib/state';
-import { findLevelAchievement, updateAchievements } from '../../lib/achievements';
+import { achievementOptions, achievementDefault, findLevelAchievement, updateAchievements } from '../../lib/achievements';
 
 export default function Achievements() {
   const score = useRecoilValue(scoreState);
@@ -24,14 +24,15 @@ export default function Achievements() {
 		}
 	}
 
-  const achievementEls = Object.keys(achievements).map((key) => {
-    const achievement = achievements[key];
+  const achievementEls = Object.keys(achievementOptions).map((key) => {
+    const achievementOption = achievementOptions[key];
+    const achievement = achievements[key] || achievementDefault;
     const classNames = [Style.achievement];
     if(achievement.achieved) {
       classNames.push(Style[achievement.icon]);
     }
-    const title = achievement.achieved ? achievement.title : '???';
-    const text = achievement.locked ? '???' : achievement.text ;
+    const title = achievement.achieved ? achievementOption.title : '???';
+    const text = achievement.locked ? '???' : achievementOption.text ;
     return (
       <li key={`acv-${key}`} className={classNames.join(' ')}>
         <p className={Style.acvTitle}>{title}</p>

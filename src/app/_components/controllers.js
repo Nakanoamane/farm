@@ -8,6 +8,7 @@ import {
 	timeState,
 	timeMultipleState,
 	isPlayingState } from '../../lib/state';
+import Saver from './saver';
 
 
 export default function Controllers() {
@@ -55,6 +56,7 @@ export default function Controllers() {
 					></button>
 			</div>
 
+			<Saver />
 		</div>
 	);
 }

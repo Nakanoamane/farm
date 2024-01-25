@@ -14,7 +14,7 @@ import {
   ingredientsState,
   dishState } from '../../lib/state';
 import Recipes from './recipes';
-import { updateItems } from '../../lib/items';
+import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 import { recipeItems } from '../../lib/kitchen';
 import Image from 'next/image';
@@ -39,10 +39,10 @@ export default function Kitchen(){
 
   const searchAndSetDish = () => {
     const ings = _.cloneDeep(ingredients).sort();
-    const recipes = recipeItems(items);
+    const recipes = recipeItems;
     let item = '';
     recipes.forEach(i => {
-      const recipe = _.cloneDeep(items[i].recipe).sort();
+      const recipe = _.cloneDeep(itemOptions[i].recipe).sort();
       const matchRecipe = recipe.every((r, index) => r === ings[index]);
       const matchIngs = ings.every((ing, index) => ing === recipe[index]);
       if (matchRecipe && matchIngs) { item = i; }
@@ -67,7 +67,7 @@ export default function Kitchen(){
 
   const dishClassName = () => {
     let className = dish === '' ? Style.dish : Style.secret;
-    if (dish !== '' && items[dish].totalNum >= 1) {
+    if (dish !== '' && items[dish] && items[dish].totalNum >= 1) {
       className = Style[dish];
     }
     return className;
@@ -76,7 +76,7 @@ export default function Kitchen(){
   const dishLabel = () => {
     let label = '';
     if (dish !== '') {
-      label = items[dish].totalNum >= 1 ? dish : '???';
+      label = items[dish] && items[dish].totalNum >= 1 ? dish : '???';
     }
     return label;
   };
@@ -94,7 +94,7 @@ export default function Kitchen(){
 			}
 		});
 
-    setScore(score + (items[dish].recipe.length * 2));
+    setScore(score + (itemOptions[dish].recipe.length * 2));
     updateItemsAndLogs(newItems);
     setIngredients(newIngs);
   };
@@ -179,7 +179,7 @@ export default function Kitchen(){
             type="button"
             className={Style.ingredient}
             onClick={onClickAddBtn}
-            disabled={items[selectedItem].type !== 'food' || items[selectedItem].num < 1 || ingredients.length >= 5}
+            disabled={itemOptions[selectedItem].type !== 'food' || items[selectedItem].num < 1 || ingredients.length >= 5}
             >
             <i className={Style.plus}></i>
           </button>

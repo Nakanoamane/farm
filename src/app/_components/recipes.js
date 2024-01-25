@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { useRecoilState } from 'recoil';
 import { itemsState, logsState, ingredientsState } from '../../lib/state';
 import { recipeItems } from '../../lib/kitchen';
-import { updateItems } from '../../lib/items';
+import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 
 export default function Recipes(){
@@ -15,7 +15,7 @@ export default function Recipes(){
 	const [ingredients, setIngredients] = useRecoilState(ingredientsState);
 
 	const onClickRecipe = (item) => {
-		let recipe = _.cloneDeep(items[item].recipe);
+		let recipe = _.cloneDeep(itemOptions[item].recipe);
 
 		let newIngs = [];
 		let newItems = {};
@@ -38,19 +38,20 @@ export default function Recipes(){
 		setIngredients(newIngs);
 	};
 
-	const recipes = recipeItems(items);
+	const recipes = recipeItems;
 	const recipeEls = recipes.map(i => {
+		const itemOption = itemOptions[i];
 		const item = items[i];
-		const unlocked = item.totalNum >= 1;
+		const unlocked = item && item.totalNum >= 1;
 
-		const icons = item.recipe.map((ingredient, index) => {
+		const icons = itemOption.recipe.map((ingredient, index) => {
 			const i = items[ingredient];
 			const className = i.totalNum >= 1 ? ingredient : 'secret';
 			return <i key={index} className={Style[`icon-${className}`]}></i>;
 		});
 
 		const ingNums = {};
-		item.recipe.forEach(ingredient => {
+		itemOption.recipe.forEach(ingredient => {
 			if(ingNums[ingredient] === undefined) { ingNums[ingredient] = 0; }
 			ingNums[ingredient] += 1;
 		});
@@ -59,7 +60,7 @@ export default function Recipes(){
 			ingNums[ingredient] -= 1;
 		});
 
-		const able = item.recipe.every(ingredient => items[ingredient].num >= ingNums[ingredient]);
+		const able = itemOption.recipe.every(ingredient => items[ingredient].num >= ingNums[ingredient]);
 
 		return (
 			<li key={i} className={Style.recipe}>

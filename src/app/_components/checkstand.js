@@ -13,7 +13,7 @@ import {
   selectedShopState } from '../../lib/state';
 import { products } from '../../lib/checkstand';
 import { newItemLogs } from '../../lib/logs';
-import { updateItems } from '../../lib/items';
+import { itemOptions, updateItems } from '../../lib/items';
 
 export default function Checkstand(){
   const [items, setItems] = useRecoilState(itemsState);
@@ -40,21 +40,21 @@ export default function Checkstand(){
     const newItems = {};
     newItems[selectedItem] = -1;
     updateItemsAndLogs(newItems);
-    setMoney(money + items[selectedItem].sell);
-    setScore(score + moneyToScore(items[selectedItem].sell));
+    setMoney(money + itemOptions[selectedItem].sell);
+    setScore(score + moneyToScore(itemOptions[selectedItem].sell));
   };
 
   const onClickProduct = (product) => {
     const newItems = {};
     newItems[product] = 1;
     updateItemsAndLogs(newItems);
-    setMoney(money - items[product].buy);
-    setScore(score + moneyToScore(items[product].buy));
+    setMoney(money - itemOptions[product].buy);
+    setScore(score + moneyToScore(itemOptions[product].buy));
   };
 
   const productEls = () => {
-    return products(items).map(product => {
-      const item = items[product];
+    return products.map(product => {
+      const itemOption = itemOptions[product];
 
       return(
         <li key={product} className={Style.product}>
@@ -62,10 +62,10 @@ export default function Checkstand(){
             type="button"
             className={Style[product]}
             onClick={() => { onClickProduct(product); }}
-            disabled={ money < item.buy }
+            disabled={ money < itemOption.buy }
             ></button>
-          <p className={ money < item.buy ? `${Style.buyNum} ${Style['is-disabled']}` : Style.buyNum}>
-            {item.buy}
+          <p className={ money < itemOption.buy ? `${Style.buyNum} ${Style['is-disabled']}` : Style.buyNum}>
+            {itemOption.buy}
           </p>
         </li>
       );
@@ -81,9 +81,9 @@ export default function Checkstand(){
             type="button"
             className={Style[selectedItem]}
             onClick={onClickSell}
-            disabled={ items[selectedItem].sell === undefined || !items[selectedItem].num >= 1 }
+            disabled={ itemOptions[selectedItem].sell === undefined || !items[selectedItem].num >= 1 }
             ></button>
-          <p className={Style.sellNum}>{ items[selectedItem].sell === undefined ? '' : `+ ${items[selectedItem].sell}` }</p>
+          <p className={Style.sellNum}>{ itemOptions[selectedItem].sell === undefined ? '' : `+ ${itemOptions[selectedItem].sell}` }</p>
         </div>
 
         <div className={Style.wallet}>{money.toLocaleString()}</div>

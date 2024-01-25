@@ -1,22 +1,12 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
+
 import { itemsDefault } from './items';
 import { fieldsDefault } from './fields';
 import { achievementsDefault } from './achievements';
 
-
-export const homeBalloonState = atom({
-  key: 'homeBalloon',
-  default: 'balloon',
-});
-
 export const itemsState = atom({
   key: 'items',
   default: itemsDefault,
-});
-
-export const selectedItemState = atom({
-  key: 'selectedItem',
-  default: 'hoe',
 });
 
 export const fieldsState = atom({
@@ -34,6 +24,27 @@ export const timeState = atom({
   default: 0,
 });
 
+export const moneyState = atom({
+  key: 'money',
+  default: 0,
+});
+
+export const scoreState = atom({
+  key: 'score',
+  default: 0,
+});
+
+
+export const homeBalloonState = atom({
+  key: 'homeBalloon',
+  default: 'balloon',
+});
+
+export const selectedItemState = atom({
+  key: 'selectedItem',
+  default: 'hoe',
+});
+
 export const timeMultipleState = atom({
   key: 'timeMultiple',
   default: 1,
@@ -49,16 +60,6 @@ export const logsState = atom({
   default: [],
 });
 
-export const moneyState = atom({
-  key: 'money',
-  default: 0,
-});
-
-export const scoreState = atom({
-  key: 'score',
-  default: 0,
-});
-
 export const selectedShopState = atom({
   key: 'selectedShop',
   default: '',
@@ -72,4 +73,9 @@ export const ingredientsState = atom({
 export const dishState = atom({
   key: 'dish',
   default: '',
+});
+
+export const saveDataState = atom({
+  key: 'saveData',
+  default: null,
 });

@@ -1,3 +1,3 @@
-export const recipeItems = (items) => {
-	return Object.keys(items).filter(item => items[item].recipe !== undefined);
-};
+import { itemOptions } from './items';
+
+export const recipeItems = Object.keys(itemOptions).filter(item => itemOptions[item].recipe !== undefined);

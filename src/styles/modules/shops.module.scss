@@ -61,7 +61,7 @@
 	background: $color-white;
 	padding: 10px;
 	width: 380px;
-	height: 200px;
+	height: 300px;
 }
 
 .clockBalloon {
@@ -108,6 +108,45 @@
 				border: none;
 				background-color: $color-gray;
 			}
+		}
+	}
+	.saver {
+		margin-top: 30px;
+		display: flex;
+		justify-content: center;
+		gap: 15px;
+
+		.save {
+			background: $color-mint;
+		}
+		.load {
+			background: $color-mustard;
+		}
+		.save, .load {
+			border: 3px solid $color-black;
+			border-radius: 8px;
+			font-family: $font-en;
+			font-size: 30px;
+			font-weight: 600;
+			text-align: center;
+			padding: 5px 30px;
+
+			&:hover:not(:disabled) {
+				cursor: pointer;
+				padding: 10px 35px;
+				margin: -5px;
+
+				&:active {
+					padding: 5px 30px;
+					margin: 0;
+				}
+			}
+			&:disabled {
+				border: none;
+				color: $color-white;
+				background-color: $color-gray;
+			}
+
 		}
 	}
 }
