@@ -2,7 +2,7 @@
 
 import Style from '../../styles/modules/shops.module.scss';
 
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -33,6 +33,10 @@ export default function Kitchen(){
     searchAndSetDish();
   }, [ingredients]);
 
+  useEffect(() => {
+    refreshPot();
+  }, [selectedShop]);
+
   const searchAndSetDish = () => {
     const ings = _.cloneDeep(ingredients).sort();
     const recipes = recipeItems(items);
@@ -44,6 +48,21 @@ export default function Kitchen(){
       if (matchRecipe && matchIngs) { item = i; }
     });
     setDish(item);
+  };
+
+  const refreshPot = () => {
+    let newItems = {};
+		ingredients.forEach(i => {
+			if (newItems[i] === undefined) { newItems[i] = 0; }
+			newItems[i] += 1;
+		});
+
+    setItems(updateItems(items, newItems));
+
+    const addLogs = newItemLogs(items, newItems);
+		setLogs(addLogs.concat([...logs]));
+
+		setIngredients([]);
   };
 
   const dishClassName = () => {

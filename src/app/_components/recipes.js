@@ -42,16 +42,23 @@ export default function Recipes(){
 	const recipeEls = recipes.map(i => {
 		const item = items[i];
 		const unlocked = item.totalNum >= 1;
+
 		const icons = item.recipe.map((ingredient, index) => {
 			const i = items[ingredient];
 			const className = i.totalNum >= 1 ? ingredient : 'secret';
 			return <i key={index} className={Style[`icon-${className}`]}></i>;
 		});
+
 		const ingNums = {};
 		item.recipe.forEach(ingredient => {
 			if(ingNums[ingredient] === undefined) { ingNums[ingredient] = 0; }
 			ingNums[ingredient] += 1;
 		});
+		ingredients.forEach(ingredient => {
+			if(ingNums[ingredient] === undefined) { ingNums[ingredient] = 0; }
+			ingNums[ingredient] -= 1;
+		});
+
 		const able = item.recipe.every(ingredient => items[ingredient].num >= ingNums[ingredient]);
 
 		return (
