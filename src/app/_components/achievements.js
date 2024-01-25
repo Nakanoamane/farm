@@ -29,7 +29,7 @@ export default function Achievements() {
     const achievement = achievements[key] || achievementDefault;
     const classNames = [Style.achievement];
     if(achievement.achieved) {
-      classNames.push(Style[achievement.icon]);
+      classNames.push(Style[achievementOption.icon]);
     }
     const title = achievement.achieved ? achievementOption.title : '???';
     const text = achievement.locked ? '???' : achievementOption.text ;
