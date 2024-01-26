@@ -34,7 +34,9 @@ export default function Saver() {
 	useEffect(() => {
 		const loadData = load();
 		setSaveData(loadData);
-		setSavedAt(loadData.savedAt);
+		if(loadData.savedAt !== null) {
+			setSavedAt(loadData.savedAt);
+		}
 	}, []);
 
 	const onClickLoad = () => {
