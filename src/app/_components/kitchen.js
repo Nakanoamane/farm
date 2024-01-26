@@ -1,6 +1,6 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/kitchen.module.scss';
 
 import _ from 'lodash';
 import { useEffect } from 'react';
@@ -12,13 +12,15 @@ import {
   scoreState,
   selectedShopState,
   ingredientsState,
-  dishState } from '../../lib/state';
+  dishState,
+  recordsState } from '../../lib/state';
 import Recipes from './recipes';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 import { recipeItems } from '../../lib/kitchen';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
+import { countUpRecords } from '../../lib/records';
 
 export default function Kitchen(){
   const [items, setItems] = useRecoilState(itemsState);
@@ -28,6 +30,7 @@ export default function Kitchen(){
   const selectedShop = useRecoilValue(selectedShopState);
   const [ingredients, setIngredients] = useRecoilState(ingredientsState);
   const [dish, setDish] = useRecoilState(dishState);
+  const [records, setRecords] = useRecoilState(recordsState);
 
   useEffect(() => {
     searchAndSetDish();
@@ -97,6 +100,7 @@ export default function Kitchen(){
     setScore(score + (itemOptions[dish].recipe.length * 2));
     updateItemsAndLogs(newItems);
     setIngredients(newIngs);
+    setRecords(countUpRecords(records, 'cook', 1));
   };
 
   const onClickIngredient = (index) => {

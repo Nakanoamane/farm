@@ -1,6 +1,6 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/controllers.module.scss';
 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {

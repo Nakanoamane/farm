@@ -1,7 +1,7 @@
 'use client';
 
 import Style from '../../styles/modules/fields.module.scss';
-import _ from 'lodash';
+import _, { set } from 'lodash';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
 	fieldsState,
@@ -9,12 +9,14 @@ import {
 	selectedItemState,
 	logsState,
 	scoreState,
-	timeState } from '../../lib/state';
+	timeState,
+	recordsState } from '../../lib/state';
 import { fieldsOptions, newField } from '../../lib/fields';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
+import { countUpRecords } from '../../lib/records';
 
 
 export default function Field({ rowIndex, cellIndex }) {
@@ -26,6 +28,7 @@ export default function Field({ rowIndex, cellIndex }) {
 	const [logs, setLogs] = useRecoilState(logsState);
 	const [score, setScore] = useRecoilState(scoreState);
 	const time = useRecoilValue(timeState);
+	const [records, setRecords] = useRecoilState(recordsState);
 
 	const changeField = () => {
 		setFields(prev => {
@@ -71,6 +74,7 @@ export default function Field({ rowIndex, cellIndex }) {
 
 		changeField();
 		getAndUseItems();
+		setRecords(countUpRecords(records, 'farm', 1));
 	}
 
 	const isClickable = () => {

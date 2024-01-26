@@ -45,3 +45,15 @@
 		animation: in 1s ease-in-out infinite;
 	}
 }
+
+@mixin shopBalloon {
+	position: absolute;
+	top: 30px;
+	right: 130px;
+	border: $color-black 3px solid;
+	border-radius: 8px;
+	background: $color-white;
+	padding: 10px;
+	width: 380px;
+	height: 320px;
+}

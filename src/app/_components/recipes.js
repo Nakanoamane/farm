@@ -1,6 +1,6 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/kitchen.module.scss';
 
 import _ from 'lodash';
 import { useRecoilState } from 'recoil';

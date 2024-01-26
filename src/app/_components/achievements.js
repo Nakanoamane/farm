@@ -1,11 +1,12 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/achievements.module.scss';
 
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { scoreState, achievementsState, selectedShopState } from '../../lib/state';
 import { achievementOptions, achievementDefault, findLevelAchievement, updateAchievements } from '../../lib/achievements';
+import Records from './records';
 
 export default function Achievements() {
   const score = useRecoilValue(scoreState);
@@ -44,6 +45,7 @@ export default function Achievements() {
   if(selectedShop !== 'museum') { return null; }
   return (
     <div className={Style.museumBalloon}>
+      <Records />
       <ul className={Style.achievements}>
         {achievementEls}
       </ul>

@@ -1,0 +1,95 @@
+@import '../settings.scss';
+@import '../mxin.scss';
+
+.clockBalloon {
+	@include shopBalloon;
+
+	.times {
+		margin-top: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 15px;
+
+		.time {
+			width: 100%;
+			font-family: $font-en;
+			font-size: 30px;
+			font-weight: 600;
+			text-align: center;
+		}
+		.pause {
+			background: url('~/public/images/icons/pause.svg') no-repeat center/50%;
+		}
+		.play {
+			background: url('~/public/images/icons/play.svg') no-repeat center/50%;
+		}
+		.double {
+			background: url('~/public/images/icons/double.svg') no-repeat center/60%;
+		}
+		.pause, .play, .double {
+			width: 75px;
+			height: 75px;
+			border: 3px solid $color-black;
+			border-radius: 8px;
+			margin: 10px;
+			background-color: $color-cobalt;
+
+			&:hover:not(:disabled) {
+				cursor: pointer;
+				width: 81px;
+				height: 81px;
+				margin: 6px 8px 4px 6px;
+			}
+			&:disabled {
+				border: none;
+				background-color: $color-gray;
+			}
+		}
+	}
+	.saver {
+		margin-top: 30px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 15px;
+
+		.save {
+			background: $color-mint;
+		}
+		.load {
+			background: $color-mustard;
+		}
+		.save, .load {
+			border: 3px solid $color-black;
+			border-radius: 8px;
+			font-family: $font-en;
+			font-size: 30px;
+			font-weight: 600;
+			text-align: center;
+			padding: 5px 30px;
+
+			&:hover:not(:disabled) {
+				cursor: pointer;
+				padding: 10px 35px;
+				margin: -5px;
+
+				&:active {
+					padding: 5px 30px;
+					margin: 0;
+				}
+			}
+			&:disabled {
+				border: none;
+				color: $color-white;
+				background-color: $color-gray;
+			}
+
+		}
+		.savedAt {
+			width: 100%;
+			text-align: center;
+			font-family: $font-en;
+		}
+	}
+}

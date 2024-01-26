@@ -1,0 +1,74 @@
+@import '../settings.scss';
+@import '../mxin.scss';
+
+.museumBalloon {
+	@include shopBalloon;
+	top: -90px;
+	width: 680px;
+	height: 520px;
+	display: flex;
+	gap: 10px;
+}
+
+.records {
+	border-right: 3px dashed $color-black;
+	padding: 20px 15px 20px 10px;
+	width: 50%;
+
+	.record {
+		display: flex;
+		font-family: $font-en;
+		margin: 10px 0;
+		align-items: center;
+
+		dt {
+			font-size: 15px;
+			font-weight: 600;
+			width: 100px;
+			flex-shrink: 0;
+		}
+		dd {
+			font-size: 14px;
+			text-align: right;
+			width: 100%;
+		}
+	}
+}
+
+.achievements {
+	width: 50%;
+	@include overflowScroll;
+
+	.achievement {
+		padding: 10px 10px 10px 80px;
+		border-bottom: 3px solid $color-black;
+		position: relative;
+
+		.acvTitle {
+			font-size: 30px;
+			font-weight: bold;
+			font-family: $font-en;
+		}
+		.acvText {
+			font-size: 16px;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 15px;
+			left: 5px;
+			display: block;
+			width: 60px;
+			height: 60px;
+			background: url('~/public/images/achievements/trophy-secret.svg') no-repeat center/contain;
+		}
+		@each $acv in $achievements {
+			&.#{$acv}::before {
+				background-image: url('~/public/images/achievements/#{$acv}.svg');
+			}
+		}
+	}
+}
+
+

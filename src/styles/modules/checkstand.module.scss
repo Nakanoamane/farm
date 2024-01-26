@@ -1,0 +1,115 @@
+@import '../settings.scss';
+@import '../mxin.scss';
+@import '../common/item.scss';
+
+.grocerBalloon {
+	@include shopBalloon;
+	top: -330px;
+	width: 580px;
+	height: 720px;
+	background: $color-ocher;
+
+	.checkstand {
+		display: flex;
+		align-items: center;
+		gap: 100px;
+		position: relative;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 140px;
+			transform: translateY(-50%);
+			width: 60px;
+			height: 45px;
+			background: url('~/public/images/icons/arrow.svg') no-repeat center/contain;
+		}
+
+		.sell {
+			background: $color-white;
+			border: 3px solid $color-black;
+			border-radius: 8px;
+			width: 120px;
+			height: 120px;
+			padding: 10px 0;
+
+			button {
+				margin: 0 auto;
+			}
+
+			.sellNum {
+				font-size: 16px;
+				font-weight: 600;
+				font-family: $font-en;
+				margin-top: 5px;
+				text-align: center;
+			}
+			button:hover:not(:disabled) + .sellNum {
+				margin-top: -1px;
+			}
+		}
+
+		.wallet {
+			border-bottom: $color-black 3px solid;
+			width: 320px;
+			height: 45px;
+			font-size: 36px;
+			font-family: $font-en;
+			font-weight: 600;
+			color: $color-white;
+			text-align: right;
+			position: relative;
+
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 40px;
+				height: 40px;
+				background: url('~/public/images/icons/money-large.svg') no-repeat center/contain;
+			}
+		}
+
+	}
+	.shelf {
+		background: $color-white;
+		border: 3px solid $color-black;
+		border-radius: 8px;
+		padding: 10px;
+		height: 500px;
+		margin-top: 20px;
+		@include overflowScroll;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+
+		.product {
+
+			.buyNum {
+				text-align: center;
+				font-family: $font-en;
+				font-size: 16px;
+				font-weight: 600;
+				margin-top: 5px;
+				padding-right: 10px;
+
+				&::before {
+					content: '';
+					display: inline-block;
+					vertical-align: bottom;
+					margin-right: 4px;
+					width: 16px;
+					height: 16px;
+					background: url('~/public/images/icons/money.svg') no-repeat center/contain;
+				}
+				&.is-disabled {
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+}

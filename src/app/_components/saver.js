@@ -1,7 +1,8 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/controllers.module.scss';
 
+import { format } from 'date-fns';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import {
@@ -12,10 +13,11 @@ import {
 	moneyState,
 	scoreState,
 	ingredientsState,
-	saveDataState
+	recordsState,
+	saveDataState,
+	savedAtState
 } from '../../lib/state';
 import { STORAGE_KEY, load } from '../../lib/loader';
-
 
 export default function Saver() {
 	const [items, setItems] = useRecoilState(itemsState);
@@ -25,13 +27,14 @@ export default function Saver() {
 	const [money, setMoney] = useRecoilState(moneyState);
 	const [score, setScore] = useRecoilState(scoreState);
 	const [ingredients, setIngredients] = useRecoilState(ingredientsState);
+	const [records, setRecords] = useRecoilState(recordsState);
 	const [saveData, setSaveData] = useRecoilState(saveDataState);
-
-	const newSaveData = {items, fields, achievements, time, money, score, ingredients};
-	const saveDataJson = JSON.stringify(newSaveData);
+	const [savedAt, setSavedAt] = useRecoilState(savedAtState);
 
 	useEffect(() => {
-		setSaveData(load());
+		const loadData = load();
+		setSaveData(loadData);
+		setSavedAt(loadData.savedAt);
 	}, []);
 
 	const onClickLoad = () => {
@@ -43,17 +46,35 @@ export default function Saver() {
 		setMoney(loadData.money);
 		setScore(loadData.score);
 		setIngredients(loadData.ingredients);
+		setRecords(loadData.records);
+		setSavedAt(loadData.savedAt);
 	};
 
 	const onClickSave = () => {
+		const now = Date.now();
+		setSavedAt(now);
+
+		const newSaveData = {
+			items, fields, achievements, time, money, score,
+			ingredients, records, savedAt: now };
+		const saveDataJson = JSON.stringify(newSaveData);
 		setSaveData(newSaveData);
 		localStorage.setItem(STORAGE_KEY, saveDataJson);
 	};
+
+	const savedAtEl = () => {
+		let text = 'NO SAVE DATA';
+		if(savedAt !== null) {
+			text = `Saved : ${format(new Date(savedAt), 'yyyy/MM/dd（eee） HH:mm:ss')}`;
+		}
+		return <p className={Style.savedAt}>{text}</p>;
+	}
 
 	return (
 		<div className={Style.saver}>
 			<button className={Style.save} onClick={onClickSave}>Save</button>
 			<button className={Style.load} onClick={onClickLoad} disabled={saveData === null}>Load</button>
+			{savedAtEl()}
 		</div>
 	);
 }

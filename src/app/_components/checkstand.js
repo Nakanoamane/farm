@@ -1,6 +1,6 @@
 'use client';
 
-import Style from '../../styles/modules/shops.module.scss';
+import Style from '../../styles/modules/checkstand.module.scss';
 
 import _ from 'lodash';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -10,10 +10,12 @@ import {
   scoreState,
   logsState,
   moneyState,
-  selectedShopState } from '../../lib/state';
+  selectedShopState,
+  recordsState } from '../../lib/state';
 import { products } from '../../lib/checkstand';
 import { newItemLogs } from '../../lib/logs';
 import { itemOptions, updateItems } from '../../lib/items';
+import { countUpRecords } from '../../lib/records';
 
 export default function Checkstand(){
   const [items, setItems] = useRecoilState(itemsState);
@@ -22,6 +24,7 @@ export default function Checkstand(){
   const [logs, setLogs] = useRecoilState(logsState);
   const [money, setMoney] = useRecoilState(moneyState);
   const selectedShop = useRecoilValue(selectedShopState);
+  const [records, setRecords] = useRecoilState(recordsState);
 
   const updateItemsAndLogs = (newItems) => {
     setItems(updateItems(items, newItems));
@@ -40,16 +43,28 @@ export default function Checkstand(){
     const newItems = {};
     newItems[selectedItem] = -1;
     updateItemsAndLogs(newItems);
-    setMoney(money + itemOptions[selectedItem].sell);
-    setScore(score + moneyToScore(itemOptions[selectedItem].sell));
+
+    const sell = itemOptions[selectedItem].sell;
+    setMoney(money + sell);
+    setScore(score + moneyToScore(sell));
+
+    let newRecords = countUpRecords(records, 'sell', 1);
+    newRecords = countUpRecords(newRecords, 'income', sell);
+    setRecords(newRecords);
   };
 
   const onClickProduct = (product) => {
     const newItems = {};
     newItems[product] = 1;
     updateItemsAndLogs(newItems);
-    setMoney(money - itemOptions[product].buy);
-    setScore(score + moneyToScore(itemOptions[product].buy));
+
+    const buy = itemOptions[product].buy;
+    setMoney(money - buy);
+    setScore(score + moneyToScore(buy));
+
+    let newRecords = countUpRecords(records, 'buy', 1);
+    newRecords = countUpRecords(newRecords, 'expense', buy*(-1));
+    setRecords(newRecords);
   };
 
   const productEls = () => {

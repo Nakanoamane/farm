@@ -3,6 +3,7 @@ import { atom } from 'recoil';
 import { itemsDefault } from './items';
 import { fieldsDefault } from './fields';
 import { achievementsDefault } from './achievements';
+import { recordsDefault } from './records';
 
 export const itemsState = atom({
   key: 'items',
@@ -32,6 +33,11 @@ export const moneyState = atom({
 export const scoreState = atom({
   key: 'score',
   default: 0,
+});
+
+export const recordsState = atom({
+  key: 'records',
+  default: recordsDefault,
 });
 
 
@@ -75,7 +81,13 @@ export const dishState = atom({
   default: '',
 });
 
+
 export const saveDataState = atom({
   key: 'saveData',
+  default: null,
+});
+
+export const savedAtState = atom({
+  key: 'savedAt',
   default: null,
 });
