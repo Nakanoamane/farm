@@ -8,6 +8,7 @@ import {
 	timeState,
 	timeMultipleState,
 	isPlayingState } from '../../lib/state';
+import { timeStr } from '../../lib/time';
 import Saver from './saver';
 
 
@@ -17,27 +18,11 @@ export default function Controllers() {
 	const [timeMultiple, setTimeMultiple] = useRecoilState(timeMultipleState);
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
-	const displayTime = () => {
-		let h = 0;
-		let m = 0;
-		let s = 0;
-		if(time > 0) {
-			h = Math.floor(time / 3600);
-			m = Math.floor((time - h * 3600) / 60);
-			s = time - h * 3600 - m * 60;
-		}
-		const h_str = String(h).padStart(2, '0');
-		const m_str = String(m).padStart(2, '0');
-		const s_str = String(s).padStart(2, '0');
-
-		return `${h_str}:${m_str}:${s_str}`;
-	}
-
 	if(selectedShop !== 'clock') { return null; }
 	return (
 		<div className={Style.clockBalloon}>
 			<div className={Style.times}>
-				<p className={Style.time}>{displayTime()}</p>
+				<p className={Style.time}>{ timeStr(time) }</p>
 
 				<button
 					className={Style.pause}

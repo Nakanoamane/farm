@@ -18,6 +18,8 @@ import {
 	savedAtState
 } from '../../lib/state';
 import { STORAGE_KEY, load } from '../../lib/loader';
+import { calcLevel } from '../../lib/score';
+import { timeStr } from '../../lib/time';
 
 export default function Saver() {
 	const [items, setItems] = useRecoilState(itemsState);
@@ -34,7 +36,7 @@ export default function Saver() {
 	useEffect(() => {
 		const loadData = load();
 		setSaveData(loadData);
-		if(loadData.savedAt !== null) {
+		if(loadData !== null) {
 			setSavedAt(loadData.savedAt);
 		}
 	}, []);
@@ -67,16 +69,30 @@ export default function Saver() {
 	const savedAtEl = () => {
 		let text = 'NO SAVE DATA';
 		if(savedAt !== null) {
-			text = `Saved : ${format(new Date(savedAt), 'yyyy/MM/dd（eee） HH:mm:ss')}`;
+			text = `Saved At : ${format(new Date(savedAt), 'yyyy/MM/dd（eee） HH:mm:ss')}`;
 		}
 		return <p className={Style.savedAt}>{text}</p>;
+	}
+
+	const savedInfoEl = () => {
+		if(saveData === null) { return null; }
+		const [lv] = calcLevel(saveData.score);
+		return (
+			<p className={Style.savedText}>
+				<span>Lv.{lv}</span>
+				<span>Time : {timeStr(saveData.time)}</span>
+			</p>
+		);
 	}
 
 	return (
 		<div className={Style.saver}>
 			<button className={Style.save} onClick={onClickSave}>Save</button>
 			<button className={Style.load} onClick={onClickLoad} disabled={saveData === null}>Load</button>
-			{savedAtEl()}
+			<div className={Style.savedInfo}>
+				{ savedAtEl() }
+				{ savedInfoEl() }
+			</div>
 		</div>
 	);
 }

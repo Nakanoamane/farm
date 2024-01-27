@@ -5,6 +5,8 @@ import { fieldsDefault } from './fields';
 import { achievementsDefault } from './achievements';
 import { recordsDefault } from './records';
 
+
+// perisited states ----------------------------------
 export const itemsState = atom({
   key: 'items',
   default: itemsDefault,
@@ -40,7 +42,18 @@ export const recordsState = atom({
   default: recordsDefault,
 });
 
+export const saveDataState = atom({
+  key: 'saveData',
+  default: null,
+});
 
+export const savedAtState = atom({
+  key: 'savedAt',
+  default: null,
+});
+
+
+// temporary states ----------------------------------
 export const homeBalloonState = atom({
   key: 'homeBalloon',
   default: 'balloon',
@@ -79,15 +92,4 @@ export const ingredientsState = atom({
 export const dishState = atom({
   key: 'dish',
   default: '',
-});
-
-
-export const saveDataState = atom({
-  key: 'saveData',
-  default: null,
-});
-
-export const savedAtState = atom({
-  key: 'savedAt',
-  default: null,
 });

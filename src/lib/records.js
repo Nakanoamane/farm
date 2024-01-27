@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export const recordsDefault = {
-	start_at: null,
+	startAt: null,
 	farm: 0,
 	cook: 0,
 	sell: 0,
@@ -12,6 +12,9 @@ export const recordsDefault = {
 
 export const countUpRecords = (records, key, value) => {
 	const newRecords = _.cloneDeep(records);
+	if(newRecords[key] === undefined) {
+		newRecords[key] = 0;
+	}
 	newRecords[key] += value;
 	return newRecords;
 };

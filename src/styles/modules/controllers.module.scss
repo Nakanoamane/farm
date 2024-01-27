@@ -86,10 +86,21 @@
 			}
 
 		}
-		.savedAt {
+		.savedInfo {
 			width: 100%;
 			text-align: center;
 			font-family: $font-en;
+
+			.savedAt {
+				font-size: 14px;
+			}
+			.savedText {
+				font-size: 12px;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0 15px;
+				justify-content: center;
+			}
 		}
 	}
 }
