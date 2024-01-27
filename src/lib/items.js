@@ -15,6 +15,11 @@ export const itemOptions = {
     buy: 20,
     sell: 1
   },
+  sugarcane: {
+    type: 'crop',
+    buy: 70,
+    sell: 1
+  },
   poultry: {
     type: 'livestock',
     buy: 100,
@@ -28,6 +33,10 @@ export const itemOptions = {
   flour: {
     type: 'food',
     sell: 5,
+  },
+  sugar: {
+    type: 'food',
+    sell: 10,
   },
   milk: {
     type: 'food',
@@ -53,6 +62,21 @@ export const itemOptions = {
   pancake: {
     type: 'food',
     recipe: [ 'flour', 'egg', 'milk' ],
+    sell: 50,
+  },
+  cookie: {
+    type: 'food',
+    recipe: [ 'flour', 'sugar', 'butter' ],
+    sell: 60,
+  },
+  cupcake: {
+    type: 'food',
+    recipe: [ 'flour', 'sugar', 'egg', 'milk' ],
+    sell: 70,
+  },
+  pudding: {
+    type: 'food',
+    recipe: [ 'sugar', 'egg', 'milk' ],
     sell: 50,
   },
   roastChicken: {

@@ -46,7 +46,7 @@ export default function Recipes(){
 
 		const icons = itemOption.recipe.map((ingredient, index) => {
 			const i = items[ingredient];
-			const className = i.totalNum >= 1 ? ingredient : 'secret';
+			const className = i && i.totalNum >= 1 ? ingredient : 'secret';
 			return <i key={index} className={Style[`icon-${className}`]}></i>;
 		});
 
@@ -60,7 +60,7 @@ export default function Recipes(){
 			ingNums[ingredient] -= 1;
 		});
 
-		const able = itemOption.recipe.every(ingredient => items[ingredient].num >= ingNums[ingredient]);
+		const able = itemOption.recipe.every(ingredient => items[ingredient] && items[ingredient].num >= ingNums[ingredient]);
 
 		return (
 			<li key={i} className={Style.recipe}>

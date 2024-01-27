@@ -78,7 +78,9 @@ export default function Checkstand(){
             className={Style[product]}
             onClick={() => { onClickProduct(product); }}
             disabled={ money < itemOption.buy }
-            ></button>
+            >
+            <span className={Style.itemName}>{ product }</span>
+          </button>
           <p className={ money < itemOption.buy ? `${Style.buyNum} ${Style['is-disabled']}` : Style.buyNum}>
             {itemOption.buy}
           </p>
@@ -97,7 +99,9 @@ export default function Checkstand(){
             className={Style[selectedItem]}
             onClick={onClickSell}
             disabled={ itemOptions[selectedItem].sell === undefined || !items[selectedItem].num >= 1 }
-            ></button>
+            >
+            <span className={Style.itemName}>{ selectedItem }</span>
+          </button>
           <p className={Style.sellNum}>{ itemOptions[selectedItem].sell === undefined ? '' : `+ ${itemOptions[selectedItem].sell}` }</p>
         </div>
 

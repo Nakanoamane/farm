@@ -1,17 +1,14 @@
-import Style from '../styles/modules/fields.module.scss';
-
 export const fieldsOptions = {
   plowed: {
-    className: Style.plowed,
     grow: ['green'],
     growSec: 30,
     items: {
       hoe: { field: 'green' },
       wheat: { field: 'wheat1' },
+      sugarcane: { field: 'sugarcane1' },
     }
   },
   green: {
-    className: Style.green,
     grow: ['grass1', 'grass2', 'grass3'],
     growSec: 120,
     items: {
@@ -21,25 +18,21 @@ export const fieldsOptions = {
     }
   },
   grass1: {
-    className: Style.grass1,
     items: {
       sickle: { field: 'green' },
     }
   },
   grass2: {
-    className: Style.grass2,
     items: {
       sickle: { field: 'green' },
     }
   },
   grass3: {
-    className: Style.grass3,
     items: {
       sickle: { field: 'green', items: { wheat: 1 } },
     }
   },
   wheat1: {
-    className: Style.wheat1,
     grow: ['wheat2'],
     growSec: 5,
     items: {
@@ -47,7 +40,6 @@ export const fieldsOptions = {
     }
   },
   wheat2: {
-    className: Style.wheat2,
     grow: ['wheat3'],
     growSec: 10,
     items: {
@@ -55,13 +47,30 @@ export const fieldsOptions = {
     }
   },
   wheat3: {
-    className: Style.wheat3,
     items: {
       sickle: { field: 'plowed', items: { wheat: 2, flour: 2 } },
     }
   },
+  sugarcane1: {
+    grow: ['sugarcane2'],
+    growSec: 5,
+    items: {
+      sickle: { field: 'plowed', items: { sugarcane: 1 } },
+    }
+  },
+  sugarcane2: {
+    grow: ['sugarcane3'],
+    growSec: 10,
+    items: {
+      sickle: { field: 'plowed', items: { sugarcane: 1 } },
+    }
+  },
+  sugarcane3: {
+    items: {
+      sickle: { field: 'plowed', items: { sugarcane: 2, sugar: 1 } },
+    }
+  },
   poultry1: {
-    className: Style.poultry1,
     grow: ['poultry2'],
     growSec: 10,
     items: {
@@ -70,7 +79,6 @@ export const fieldsOptions = {
     }
   },
   poultry2: {
-    className: Style.poultry2,
     grow: ['poultry3'],
     growSec: 20,
     items: {
@@ -79,14 +87,12 @@ export const fieldsOptions = {
     }
   },
   poultry3: {
-    className: Style.poultry3,
     items: {
       hand: { field: 'poultry1', items: { poultry: 1 } },
       sickle: { field: 'green', items: { chicken: 2 } },
     }
   },
   cow1: {
-    className: Style.cow1,
     grow: ['cow2'],
     growSec: 10,
     items: {
@@ -95,7 +101,6 @@ export const fieldsOptions = {
     }
   },
   cow2: {
-    className: Style.cow2,
     grow: ['cow3'],
     growSec: 20,
     items: {
@@ -104,7 +109,6 @@ export const fieldsOptions = {
     }
   },
   cow3: {
-    className: Style.cow3,
     items: {
       hand: { field: 'cow1', items: { cow: 1 } },
       sickle: { field: 'green', items: { beaf: 2 } },
