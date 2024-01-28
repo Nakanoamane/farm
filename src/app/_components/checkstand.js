@@ -63,7 +63,7 @@ export default function Checkstand(){
     setScore(score + moneyToScore(buy));
 
     let newRecords = countUpRecords(records, 'buy', 1);
-    newRecords = countUpRecords(newRecords, 'expense', buy*(-1));
+    newRecords = countUpRecords(newRecords, 'expense', buy);
     setRecords(newRecords);
   };
 

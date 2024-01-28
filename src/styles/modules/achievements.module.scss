@@ -64,8 +64,10 @@
 			background: url('~/public/images/achievements/trophy-secret.svg') no-repeat center/contain;
 		}
 		@each $acv in $achievements {
-			&.#{$acv}::before {
-				background-image: url('~/public/images/achievements/#{$acv}.svg');
+			@each $grade in $achievementGrades {
+				&.#{$acv}-#{$grade}::before {
+					background-image: url('~/public/images/achievements/#{$acv}-#{$grade}.svg');
+				}
 			}
 		}
 	}

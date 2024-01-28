@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.48 62.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dde070;
+        stroke: #333;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <g id="achievements">
+    <g id="cook-lime">
+      <path class="cls-1" d="M10.87,22h49v34.69c0,2.38-1.93,4.31-4.31,4.31H15.18c-2.38,0-4.31-1.93-4.31-4.31V22h0Z"/>
+      <path class="cls-1" d="M16.17,9.27h38.21c2.98,0,5.39,2.42,5.39,5.39v3.34H10.78v-3.34c0-2.98,2.42-5.39,5.39-5.39Z"/>
+      <path class="cls-1" d="M33.3,1.5h5.13c2.17,0,3.93,1.76,3.93,3.93v3.07h-13v-3.07c0-2.17,1.76-3.93,3.93-3.93Z"/>
+      <rect class="cls-1" x="2.37" y="24.5" width="13" height="7" transform="translate(12.52 -1.14) rotate(24.71)"/>
+      <rect class="cls-1" x="55.12" y="24.93" width="13" height="7" transform="translate(129.47 28.5) rotate(155.29)"/>
+    </g>
+  </g>
+</svg>

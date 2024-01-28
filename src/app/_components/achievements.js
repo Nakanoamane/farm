@@ -4,26 +4,71 @@ import Style from '../../styles/modules/achievements.module.scss';
 
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { scoreState, achievementsState, selectedShopState } from '../../lib/state';
-import { achievementOptions, achievementDefault, findLevelAchievement, updateAchievements } from '../../lib/achievements';
+import {
+  scoreState,
+  timeState,
+  moneyState,
+  recordsState,
+  achievementsState,
+  selectedShopState } from '../../lib/state';
+import {
+  achievementOptions,
+  achievementDefault,
+  findAchievement,
+  updateAchievements } from '../../lib/achievements';
+import { calcLevel } from '../../lib/score';
 import Records from './records';
 
 export default function Achievements() {
   const score = useRecoilValue(scoreState);
+  const money = useRecoilValue(moneyState);
+  const time = useRecoilValue(timeState);
+  const records = useRecoilValue(recordsState);
   const [achievements, setAchievements] = useRecoilState(achievementsState);
   const selectedShop = useRecoilValue(selectedShopState);
 
   useEffect(() => {
-    achieve();
+    const [level] = calcLevel(score);
+    achieve('level', level);
   }, [score]);
 
-  const achieve = () => {
-		const achievement = findLevelAchievement(achievements, score);
+  useEffect(() => {
+    achieve('money', money);
+  }, [money]);
+
+  useEffect(() => {
+    achieve('time', time);
+  }, [time]);
+
+  useEffect(() => {
+    achieveRecoreds();
+  }, [records]);
+
+  const achieve = (key, value) => {
+		const achievement = findAchievement(achievements, key, value);
 		if(achievement) {
 			const newAchievements = updateAchievements(achievements, achievement);
 			setAchievements(newAchievements);
 		}
-	}
+	};
+
+  const achieveRecoreds = () => {
+    const keys = ['farm', 'cook', 'sell', 'buy', 'income', 'expense'];
+    let newAchievements = _.cloneDeep(achievements);
+    let num = 0;
+
+    keys.forEach((key) => {
+      const achievement = findAchievement(achievements, key, records[key]);
+      if(achievement) {
+        newAchievements = updateAchievements(newAchievements, achievement);
+        num++;
+      }
+    });
+
+    if(num > 0) {
+      setAchievements(newAchievements);
+    }
+  };
 
   const achievementEls = Object.keys(achievementOptions).map((key) => {
     const achievementOption = achievementOptions[key];

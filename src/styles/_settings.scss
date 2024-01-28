@@ -65,8 +65,20 @@ $shops: (
 );
 
 $achievements: (
-	'trophy-tea',
-	'trophy-mint',
-	'trophy-lime',
-	'trophy-mustard',
+	'trophy',
+	'money',
+	'time',
+	'farm',
+	'cook',
+	'sell',
+	'buy',
+	'income',
+	'expense',
+);
+
+$achievementGrades: (
+	'tea',
+	'mint',
+	'lime',
+	'mustard',
 );
