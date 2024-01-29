@@ -17,7 +17,7 @@ import {
 import Recipes from './recipes';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
-import { recipeItems } from '../../lib/kitchen';
+import { recipeItems, searchDish } from '../../lib/kitchen';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
 import { countUpRecords } from '../../lib/records';
@@ -43,13 +43,7 @@ export default function Kitchen(){
   const searchAndSetDish = () => {
     const ings = _.cloneDeep(ingredients).sort();
     const recipes = recipeItems;
-    let item = '';
-    recipes.forEach(i => {
-      const recipe = _.cloneDeep(itemOptions[i].recipe).sort();
-      const matchRecipe = recipe.every((r, index) => r === ings[index]);
-      const matchIngs = ings.every((ing, index) => ing === recipe[index]);
-      if (matchRecipe && matchIngs) { item = i; }
-    });
+    const item = searchDish(ings, recipes);
     setDish(item);
   };
 
@@ -144,6 +138,14 @@ export default function Kitchen(){
       );
   });
 
+  const cursorClassName = (className) => {
+    let classNames = [className, Style[`cursor-${selectedItem}`]];
+    if (itemOptions[selectedItem].type !== 'food' || !items[selectedItem].num) {
+      classNames.push(Style['is-disabled']);
+    }
+    return classNames.join(' ');
+  };
+
   if(selectedShop !== 'restaurant') { return null; }
   return(
     <div className={Style.restaurantBalloon}>
@@ -161,7 +163,7 @@ export default function Kitchen(){
       </div>
 
       <div className={Style.stove}>
-        <div className={Style.pot}>
+        <div className={cursorClassName(Style.pot)}>
         <Image
           src={imagePath('images/shops/pot1.webp')}
           className={Style.imageA}
@@ -181,7 +183,7 @@ export default function Kitchen(){
 
           <button
             type="button"
-            className={Style.ingredient}
+            className={cursorClassName(Style.ingredient)}
             onClick={onClickAddBtn}
             disabled={itemOptions[selectedItem].type !== 'food' || items[selectedItem].num < 1 || ingredients.length >= 5}
             >

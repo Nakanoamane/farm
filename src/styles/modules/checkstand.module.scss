@@ -83,31 +83,42 @@
 		height: 500px;
 		margin-top: 20px;
 		@include overflowScroll;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
 
-		.product {
+		.products {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+			justify-content: space-evenly;
 
-			.buyNum {
-				text-align: center;
-				font-family: $font-en;
-				font-size: 16px;
-				font-weight: 600;
-				margin-top: 5px;
-				padding-right: 10px;
+			&::after {
+				content: '';
+				display: block;
+				flex: 0 0 100%;
+				height: 0;
+			}
 
-				&::before {
-					content: '';
-					display: inline-block;
-					vertical-align: bottom;
-					margin-right: 4px;
-					width: 16px;
-					height: 16px;
-					background: url('~/public/images/icons/money.svg') no-repeat center/contain;
-				}
-				&.is-disabled {
-					opacity: 0.5;
+			.product {
+
+				.buyNum {
+					text-align: center;
+					font-family: $font-en;
+					font-size: 16px;
+					font-weight: 600;
+					margin-top: 5px;
+					padding-right: 10px;
+
+					&::before {
+						content: '';
+						display: inline-block;
+						vertical-align: bottom;
+						margin-right: 4px;
+						width: 16px;
+						height: 16px;
+						background: url('~/public/images/icons/money.svg') no-repeat center/contain;
+					}
+					&.is-disabled {
+						opacity: 0.5;
+					}
 				}
 			}
 		}

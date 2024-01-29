@@ -24,15 +24,7 @@
 }
 
 .cell {
-	@each $item in $items {
-		&.cursor-#{$item} {
-			cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
-		}
-	}
-
-	&.is-disabled {
-		cursor: not-allowed;
-	}
+	@include itemCursor;
 
 	.imageBox{
 		width: 75px;

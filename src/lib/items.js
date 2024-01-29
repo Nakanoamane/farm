@@ -20,6 +20,21 @@ export const itemOptions = {
     buy: 70,
     sell: 1
   },
+  carrotSeed: {
+    type: 'crop',
+    buy: 100,
+    sell: 2
+  },
+  seedPotato: {
+    type: 'crop',
+    buy: 100,
+    sell: 2
+  },
+  tomatoSeed: {
+    type: 'crop',
+    buy: 100,
+    sell: 2
+  },
   poultry: {
     type: 'livestock',
     buy: 100,
@@ -35,6 +50,18 @@ export const itemOptions = {
     sell: 5,
   },
   sugar: {
+    type: 'food',
+    sell: 10,
+  },
+  carrot: {
+    type: 'food',
+    sell: 10,
+  },
+  potato: {
+    type: 'food',
+    sell: 10,
+  },
+  tomato: {
     type: 'food',
     sell: 10,
   },
@@ -98,6 +125,26 @@ export const itemOptions = {
     type: 'food',
     recipe: [ 'beaf' ],
     sell: 30,
+  },
+  frenchFries: {
+    type: 'food',
+    recipe: [ 'potato' ],
+    sell: 30,
+  },
+  stew: {
+    type: 'food',
+    recipe: [ 'potato', 'carrot', 'beaf' ],
+    sell: 80,
+  },
+  pasta: {
+    type: 'food',
+    recipe: [ 'flour', 'tomato' ],
+    sell: 40,
+  },
+  pizza: {
+    type: 'food',
+    recipe: [ 'flour', 'tomato', 'cheese' ],
+    sell: 100,
   },
 };
 

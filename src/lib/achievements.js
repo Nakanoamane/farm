@@ -79,19 +79,19 @@ export const achievementOptions = {
   },
   farm2: {
     title: 'Nice Fieald',
-    text: '50回農作業をする',
+    text: '100回農作業をする',
     icon: 'farm-mint',
     next: 'farm3'
   },
   farm3: {
     title: 'Extensive Fieald',
-    text: '100回農作業をする',
+    text: '1,000回農作業をする',
     icon: 'farm-lime',
     next: 'farm4'
   },
   farm4: {
     title: 'Great Farmer',
-    text: '1000回農作業をする',
+    text: '10,000回農作業をする',
     icon: 'farm-mustard',
   },
   cook1: {
@@ -232,9 +232,9 @@ const achievementMaps = {
   },
   farm: {
     farm1: 10,
-    farm2: 50,
-    farm3: 100,
-    farm4: 1000,
+    farm2: 100,
+    farm3: 1000,
+    farm4: 10000,
   },
   cook: {
     cook1: 1,
@@ -287,8 +287,6 @@ export const achievementsDefault = {
 
 export function updateAchievements(achievements, achieved) {
   let newachievements = _.cloneDeep(achievements);
-  console.log(achievements);
-  console.log(newachievements);
   newachievements[achieved].achieved = true;
   newachievements[achieved].locked = false;
   let next = achievementOptions[achieved].next;

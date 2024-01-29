@@ -6,6 +6,9 @@ export const fieldsOptions = {
       hoe: { field: 'green' },
       wheat: { field: 'wheat1' },
       sugarcane: { field: 'sugarcane1' },
+      carrotSeed: { field: 'carrot1' },
+      seedPotato: { field: 'potato1' },
+      tomatoSeed: { field: 'tomato1' },
     }
   },
   green: {
@@ -68,6 +71,63 @@ export const fieldsOptions = {
   sugarcane3: {
     items: {
       sickle: { field: 'plowed', items: { sugarcane: 2, sugar: 1 } },
+    }
+  },
+  carrot1: {
+    grow: ['carrot2'],
+    growSec: 10,
+    items: {
+      sickle: { field: 'plowed', items: { carrotSeed: 1 } },
+    }
+  },
+  carrot2: {
+    grow: ['carrot3'],
+    growSec: 15,
+    items: {
+      sickle: { field: 'plowed', items: { carrotSeed: 1 } },
+    }
+  },
+  carrot3: {
+    items: {
+      sickle: { field: 'plowed', items: { carrotSeed: 2, carrot: 1 } },
+    }
+  },
+  potato1: {
+    grow: ['potato2'],
+    growSec: 10,
+    items: {
+      sickle: { field: 'plowed', items: { seedPotato: 1 } },
+    }
+  },
+  potato2: {
+    grow: ['potato3'],
+    growSec: 15,
+    items: {
+      sickle: { field: 'plowed', items: { seedPotato: 1 } },
+    }
+  },
+  potato3: {
+    items: {
+      sickle: { field: 'plowed', items: { seedPotato: 2, potato: 1 } },
+    }
+  },
+  tomato1: {
+    grow: ['tomato2'],
+    growSec: 10,
+    items: {
+      sickle: { field: 'plowed', items: { tomatoSeed: 1 } },
+    }
+  },
+  tomato2: {
+    grow: ['tomato3'],
+    growSec: 15,
+    items: {
+      sickle: { field: 'plowed', items: { tomatoSeed: 1 } },
+    }
+  },
+  tomato3: {
+    items: {
+      sickle: { field: 'plowed', items: { tomatoSeed: 2, tomato: 1 } },
     }
   },
   poultry1: {

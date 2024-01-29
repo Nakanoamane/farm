@@ -108,7 +108,9 @@ export default function Checkstand(){
         <div className={Style.wallet}>{money.toLocaleString()}</div>
       </div>
 
-      <ul className={Style.shelf}>{productEls()}</ul>
+      <div className={Style.shelf}>
+        <ul className={Style.products}>{productEls()}</ul>
+      </div>
     </div>
   );
 

@@ -48,6 +48,7 @@
 			padding: 75px 50px 45px;
 			gap: 5px;
 			@include animate2Img;
+			@include itemCursor;
 
 			.ingredient {
 				min-width: 50px;
@@ -62,7 +63,9 @@
 				&:hover {
 					cursor: pointer;
 					padding: 0;
+					@include itemCursor;
 				}
+
 				&:active {
 					padding: 5px;
 				}
