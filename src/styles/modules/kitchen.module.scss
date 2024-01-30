@@ -116,6 +116,10 @@
 						width: 32px;
 						height: 32px;
 						display: block;
+
+						&.is-disabled {
+							opacity: 0.3;
+						}
 					}
 				}
 			}

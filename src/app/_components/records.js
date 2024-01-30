@@ -24,8 +24,10 @@ export default function Records() {
 
   useEffect(() => {
     const newRecords = _.cloneDeep(records);
-    newRecords.startAt = format(Date.now(), 'yyyy/MM/dd（eee） HH:mm:ss');
-    setRecords(newRecords);
+		if (newRecords.startAt === null) {
+			newRecords.startAt = format(Date.now(), 'yyyy/MM/dd（eee） HH:mm:ss');
+			setRecords(newRecords);
+		}
   }, []);
 
 	const recordEls = Object.keys(records).map((key) => {

@@ -45,6 +45,11 @@ export const itemOptions = {
     buy: 100,
     sell: 3
   },
+  pig: {
+    type: 'livestock',
+    buy: 100,
+    sell: 3
+  },
   flour: {
     type: 'food',
     sell: 5,
@@ -78,6 +83,10 @@ export const itemOptions = {
     sell: 10,
   },
   beaf: {
+    type: 'food',
+    sell: 10,
+  },
+  pork: {
     type: 'food',
     sell: 10,
   },
@@ -150,6 +159,11 @@ export const itemOptions = {
     type: 'food',
     recipe: [ 'egg', 'tomato' ],
     sell: 50,
+  },
+  baconEgg: {
+    type: 'food',
+    recipe: [ 'bread', 'egg', 'pork' ],
+    sell: 100,
   },
 };
 

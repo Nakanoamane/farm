@@ -47,7 +47,8 @@ export default function Recipes(){
 		const icons = itemOption.recipe.map((ingredient, index) => {
 			const i = items[ingredient];
 			const className = i && i.totalNum >= 1 ? ingredient : 'secret';
-			return <i key={index} className={Style[`icon-${className}`]}></i>;
+			const statusClassName = i && i.num >= 1 ? '' : Style['is-disabled'];
+			return <i key={index} className={`${Style[`icon-${className}`]} ${statusClassName}`}></i>;
 		});
 
 		const ingNums = {};
