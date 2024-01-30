@@ -146,6 +146,11 @@ export const itemOptions = {
     recipe: [ 'flour', 'tomato', 'cheese' ],
     sell: 100,
   },
+  omelette: {
+    type: 'food',
+    recipe: [ 'egg', 'tomato' ],
+    sell: 50,
+  },
 };
 
 export const itemsDefault = {

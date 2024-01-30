@@ -4,7 +4,7 @@ import Style from '../../styles/modules/controllers.module.scss';
 
 import { format } from 'date-fns';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
 	itemsState,
 	fieldsState,
@@ -15,11 +15,15 @@ import {
 	ingredientsState,
 	recordsState,
 	saveDataState,
-	savedAtState
+	savedAtState,
+	selectedShopState,
+	saveConfirmState,
+	loadConfirmState
 } from '../../lib/state';
 import { STORAGE_KEY, load } from '../../lib/loader';
 import { calcLevel } from '../../lib/score';
 import { timeStr } from '../../lib/time';
+import { set } from 'lodash';
 
 export default function Saver() {
 	const [items, setItems] = useRecoilState(itemsState);
@@ -32,6 +36,14 @@ export default function Saver() {
 	const [records, setRecords] = useRecoilState(recordsState);
 	const [saveData, setSaveData] = useRecoilState(saveDataState);
 	const [savedAt, setSavedAt] = useRecoilState(savedAtState);
+	const selectedShop = useRecoilValue(selectedShopState);
+	const [saveConfirm, setSaveConfirm] = useRecoilState(saveConfirmState);
+	const [loadConfirm, setLoadConfirm] = useRecoilState(loadConfirmState);
+
+	useEffect(() => {
+		setSaveConfirm(false);
+		setLoadConfirm(false);
+	}, [selectedShop]);
 
 	useEffect(() => {
 		const loadData = load();
@@ -66,6 +78,26 @@ export default function Saver() {
 		localStorage.setItem(STORAGE_KEY, saveDataJson);
 	};
 
+	const saveConfirmEl = () => {
+		if(!saveConfirm) { return null; }
+		return (
+			<div className={Style.confirm}>
+				<p className={Style.text}>Save?</p>
+				<button className={Style.ok} onClick={onClickSave}>OK</button>
+			</div>
+		);
+	};
+
+	const loadConfirmEl = () => {
+		if(!loadConfirm) { return null; }
+		return (
+			<div className={Style.confirm}>
+				<p className={Style.text}>Load?</p>
+				<button className={Style.ok} onClick={onClickLoad}>OK</button>
+			</div>
+		);
+	}
+
 	const savedAtEl = () => {
 		let text = 'NO SAVE DATA';
 		if(savedAt !== null) {
@@ -87,8 +119,16 @@ export default function Saver() {
 
 	return (
 		<div className={Style.saver}>
-			<button className={Style.save} onClick={onClickSave}>Save</button>
-			<button className={Style.load} onClick={onClickLoad} disabled={saveData === null}>Load</button>
+			<div className={Style.buttonBox}>
+				<button className={Style.save} onClick={() => { setSaveConfirm(!saveConfirm); setLoadConfirm(false); }}>Save</button>
+				{ saveConfirmEl() }
+			</div>
+
+			<div className={Style.buttonBox}>
+				<button className={Style.load} onClick={() => { setLoadConfirm(!loadConfirm); setSaveConfirm(false); }} disabled={saveData === null}>Load</button>
+				{ loadConfirmEl() }
+			</div>
+
 			<div className={Style.savedInfo}>
 				{ savedAtEl() }
 				{ savedInfoEl() }

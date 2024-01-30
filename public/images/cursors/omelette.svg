@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #ffec64;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke: #333;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: #f4f2e9;
+      }
+
+      .cls-4 {
+        fill: #cc5700;
+      }
+    </style>
+  </defs>
+  <g id="cursors">
+    <g id="omelette">
+      <g id="crop">
+        <g id="shgarcane">
+          <rect class="cls-1" width="32" height="32"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <ellipse class="cls-3" cx="16" cy="18.14" rx="15.19" ry="5.75"/>
+          <path class="cls-2" d="M3.34,18.14c1.06,3.38,11.12,3.28,17.96,1.38,2.5-.69,6.59-1.83,6.91-4.14.34-2.49-3.87-5.01-6.45-5.99-4.47-1.69-8.53-.41-9.67,0-4.61,1.64-9.59,6.06-8.75,8.75Z"/>
+        </g>
+        <path class="cls-4" d="M8.4,11.23c-.19-.47,3.44-3.41,7.83-3.22,1.28.06,3,.13,4.14,1.38,2.22,2.42.68,7.51-.92,7.83-1.18.23-1.79-2.25-5.52-4.6-1.36-.86-2.48-1.28-3.68-1.38-1.18-.09-1.77.18-1.84,0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -4,6 +4,7 @@ import { itemsDefault } from './items';
 import { fieldsDefault } from './fields';
 import { achievementsDefault } from './achievements';
 import { recordsDefault } from './records';
+import { load } from './loader';
 
 
 // perisited states ----------------------------------
@@ -92,4 +93,14 @@ export const ingredientsState = atom({
 export const dishState = atom({
   key: 'dish',
   default: '',
+});
+
+export const saveConfirmState = atom({
+  key: 'saveConfirm',
+  default: false,
+});
+
+export const loadConfirmState = atom({
+  key: 'loadConfirm',
+  default: false,
 });
