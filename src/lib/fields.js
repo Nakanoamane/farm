@@ -201,12 +201,13 @@ export function fieldsDefault() {
   return rows;
 };
 
-export function newField(time, field) {
+export function newField(time, field, items = {}) {
   let option = fieldsOptions[field];
   let sec = option.growSec ? option.growSec : 0;
   let newField = {
     field: field,
     updateTime: time + sec,
+    items: items,
   }
   return newField;
 }

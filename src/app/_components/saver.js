@@ -23,7 +23,6 @@ import {
 import { STORAGE_KEY, load } from '../../lib/loader';
 import { calcLevel } from '../../lib/score';
 import { timeStr } from '../../lib/time';
-import { set } from 'lodash';
 
 export default function Saver() {
 	const [items, setItems] = useRecoilState(itemsState);

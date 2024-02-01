@@ -24,12 +24,63 @@
 }
 
 .cell {
+	position: relative;
 	@include itemCursor;
 
 	.imageBox{
 		width: 75px;
 		height: 75px;
 		@include animate2Img;
+	}
+	.items {
+		position: absolute;
+		width: 100%;
+		top: 10px;
+		left: 0;
+
+		@keyframes slideUp {
+			0% {
+				transform: translateY(0);
+				opacity: 1;
+			}
+			80% {
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(-10px);
+				opacity: 0;
+			}
+		}
+
+		@each $item in $items {
+			.item-#{$item} {
+				display: block;
+				color: $color-white;
+				font-weight: 600;
+				font-size: 13px;
+				font-family: $font-en;
+				background: $color-terracotta;
+				width: 40px;
+				padding: 2px;
+				border-radius: 10px;
+				text-align: center;
+				margin: 0 0 3px auto;
+				animation: slideUp 0.5s ease-in-out forwards;
+
+				&::before {
+					content: '';
+					display: inline-block;
+					vertical-align: middle;
+					width: 15px;
+					height: 15px;
+					background: url('~/public/images/cursors/#{$item}.svg') no-repeat center/contain;
+					margin-right: 1px;
+				}
+				&.is-minus {
+					background: $color-mint;
+				}
+			}
+		}
 	}
 }
 

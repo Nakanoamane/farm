@@ -1,7 +1,7 @@
 'use client';
 
 import Style from '../../styles/modules/fields.module.scss';
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
 	fieldsState,
@@ -30,10 +30,11 @@ export default function Field({ rowIndex, cellIndex }) {
 	const time = useRecoilValue(timeState);
 	const [records, setRecords] = useRecoilState(recordsState);
 
-	const changeField = () => {
+	const changeField = (newItems) => {
 		setFields(prev => {
 			let newFields = _.cloneDeep(prev);
-			newFields[rowIndex][cellIndex] = newField(time, fieldOption.items[selectedItem].field);
+			const fieldName = fieldOption.items[selectedItem].field;
+			newFields[rowIndex][cellIndex] = newField(time, fieldName, newItems);
 			return newFields
 		});
 	}
@@ -56,7 +57,7 @@ export default function Field({ rowIndex, cellIndex }) {
 		if(add > 0) { setScore(score + add); }
 	}
 
-	const getAndUseItems = () => {
+	const buildNewItems = () => {
 		const item = fieldOption.items[selectedItem];
 		let newItems = {};
 		if(item.items) {
@@ -64,16 +65,17 @@ export default function Field({ rowIndex, cellIndex }) {
 		}
 		newItems[selectedItem] = -1;
 
-		changeItems(newItems);
-		addLogs(newItems);
-		addScore(newItems);
+		return newItems;
 	};
 
 	const onCickField =  () => {
 		if(!isClickable() ) return;
 
-		changeField();
-		getAndUseItems();
+		const newItems = buildNewItems();
+		changeField(newItems);
+		changeItems(newItems);
+		addLogs(newItems);
+		addScore(newItems);
 		setRecords(countUpRecords(records, 'farm', 1));
 	}
 
@@ -91,6 +93,16 @@ export default function Field({ rowIndex, cellIndex }) {
 		}
 		return cn.join(' ');
 	};
+
+	const itemEls = Object.keys(field.items).map((key) => {
+		if (itemOptions[key].type === 'tool') { return null; }
+
+		const num = field.items[key];
+		let classNames = [Style[`item-${key}`]];
+		if(num < 1) { classNames.push(Style['is-minus']); }
+
+		return <span className={classNames.join(' ')} key={key}>{num > 0 ? '+' : ''}{num}</span>;
+	});
 
 	return (
 		<td
@@ -113,6 +125,7 @@ export default function Field({ rowIndex, cellIndex }) {
 					alt={field.field}
 					/>
 			</div>
+			<div className={Style.items}>{itemEls}</div>
 		</td>
 	)
 }
