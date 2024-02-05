@@ -57,11 +57,10 @@ export default function Field({ rowIndex, cellIndex }) {
 		if(add > 0) { setScore(score + add); }
 	}
 
-	const buildNewItems = () => {
-		const item = fieldOption.items[selectedItem];
+	const buildNewItems = (items) => {
 		let newItems = {};
-		if(item.items) {
-			newItems = {...item.items};
+		if(items) {
+			newItems = {...items};
 		}
 		newItems[selectedItem] = -1;
 
@@ -71,11 +70,14 @@ export default function Field({ rowIndex, cellIndex }) {
 	const onCickField =  () => {
 		if(!isClickable() ) return;
 
-		const newItems = buildNewItems();
+		const item = fieldOption.items[selectedItem];
+		const newItems = buildNewItems(item.items);
 		changeField(newItems);
 		changeItems(newItems);
 		addLogs(newItems);
-		addScore(newItems);
+		if (item.addScore){
+			addScore(newItems);
+		}
 		setRecords(countUpRecords(records, 'farm', 1));
 	}
 

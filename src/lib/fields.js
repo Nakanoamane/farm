@@ -52,7 +52,7 @@ export const fieldsOptions = {
   },
   wheat3: {
     items: {
-      sickle: { field: 'plowed', items: { wheat: 2, flour: 2 } },
+      sickle: { field: 'plowed', items: { wheat: 2, flour: 2 }, addScore: true },
     }
   },
   sugarcane1: {
@@ -71,7 +71,7 @@ export const fieldsOptions = {
   },
   sugarcane3: {
     items: {
-      sickle: { field: 'plowed', items: { sugarcane: 2, sugar: 1 } },
+      sickle: { field: 'plowed', items: { sugarcane: 2, sugar: 1 }, addScore: true },
     }
   },
   carrot1: {
@@ -90,7 +90,7 @@ export const fieldsOptions = {
   },
   carrot3: {
     items: {
-      sickle: { field: 'plowed', items: { carrotSeed: 2, carrot: 1 } },
+      sickle: { field: 'plowed', items: { carrotSeed: 2, carrot: 1 }, addScore: true },
     }
   },
   potato1: {
@@ -109,7 +109,7 @@ export const fieldsOptions = {
   },
   potato3: {
     items: {
-      sickle: { field: 'plowed', items: { seedPotato: 2, potato: 1 } },
+      sickle: { field: 'plowed', items: { seedPotato: 2, potato: 1 }, addScore: true },
     }
   },
   tomato1: {
@@ -128,7 +128,7 @@ export const fieldsOptions = {
   },
   tomato3: {
     items: {
-      sickle: { field: 'plowed', items: { tomatoSeed: 2, tomato: 1 } },
+      sickle: { field: 'plowed', items: { tomatoSeed: 2, tomato: 1 }, addScore: true },
     }
   },
   poultry1: {
@@ -136,21 +136,21 @@ export const fieldsOptions = {
     growSec: 10,
     items: {
       hand: { field: 'green', items: { poultry: 1 } },
-      sickle: { field: 'green', items: { chicken: 1 } },
+      sickle: { field: 'green', items: { chicken: 1 }, addScore: true },
     }
   },
   poultry2: {
     grow: ['poultry3'],
     growSec: 20,
     items: {
-      hand: { field: 'poultry1', items: { egg: 1 } },
-      sickle: { field: 'green', items: { chicken: 1, egg: 1 } },
+      hand: { field: 'poultry1', items: { egg: 1 }, addScore: true },
+      sickle: { field: 'green', items: { chicken: 1, egg: 1 }, addScore: true },
     }
   },
   poultry3: {
     items: {
-      hand: { field: 'poultry1', items: { poultry: 1 } },
-      sickle: { field: 'green', items: { chicken: 2 } },
+      hand: { field: 'poultry1', items: { poultry: 1 }, addScore: true },
+      sickle: { field: 'green', items: { chicken: 2 }, addScore: true },
     }
   },
   cow1: {
@@ -158,21 +158,21 @@ export const fieldsOptions = {
     growSec: 10,
     items: {
       hand: { field: 'green', items: { cow: 1 } },
-      sickle: { field: 'green', items: { beaf: 1 } },
+      sickle: { field: 'green', items: { beaf: 1 }, addScore: true },
     }
   },
   cow2: {
     grow: ['cow3'],
     growSec: 20,
     items: {
-      hand: { field: 'cow1', items: { milk: 1 } },
-      sickle: { field: 'green', items: { beaf: 1, milk: 1 } },
+      hand: { field: 'cow1', items: { milk: 1 }, addScore: true },
+      sickle: { field: 'green', items: { beaf: 1, milk: 1 }, addScore: true },
     }
   },
   cow3: {
     items: {
-      hand: { field: 'cow1', items: { cow: 1 } },
-      sickle: { field: 'green', items: { beaf: 2 } },
+      hand: { field: 'cow1', items: { cow: 1 }, addScore: true },
+      sickle: { field: 'green', items: { beaf: 2 }, addScore: true },
     }
   },
   pig1: {
@@ -180,13 +180,13 @@ export const fieldsOptions = {
     growSec: 15,
     items: {
       hand: { field: 'green', items: { pig: 1 } },
-      sickle: { field: 'green', items: { pork: 1 } },
+      sickle: { field: 'green', items: { pork: 1 }, addScore: true },
     }
   },
   pig2: {
     items: {
-      hand: { field: 'pig1', items: { pig: 1 } },
-      sickle: { field: 'green', items: { pork: 2 } },
+      hand: { field: 'pig1', items: { pig: 1 }, addScore: true },
+      sickle: { field: 'green', items: { pork: 2 }, addScore: true },
     }
   },
 };
