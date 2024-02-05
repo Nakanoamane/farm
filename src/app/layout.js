@@ -4,7 +4,7 @@ import '../styles/base.scss';
 export const metadata = {
   title: 'Farm',
   description: 'The game of farming',
-  metadataBase: new URL('https://nakanoamane.github.io/farm/'),
+  metadataBase: new URL('https://nakanoamane.github.io/'),
 }
 
 export default function RootLayout({ children }) {
