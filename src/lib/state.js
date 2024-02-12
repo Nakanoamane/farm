@@ -95,6 +95,11 @@ export const dishState = atom({
   default: '',
 });
 
+export const cookedDishState = atom({
+  key: 'cookedDish',
+  default: [],
+});
+
 export const saveConfirmState = atom({
   key: 'saveConfirm',
   default: false,

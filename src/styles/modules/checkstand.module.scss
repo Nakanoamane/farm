@@ -2,6 +2,8 @@
 @import '../mxin.scss';
 @import '../common/item.scss';
 
+@include items;
+
 .grocerBalloon {
 	@include shopBalloon;
 	top: -330px;

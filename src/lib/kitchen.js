@@ -12,3 +12,32 @@ export const searchDish = (ingredients, recipes) => {
 	});
 	return item;
 };
+
+export const ingNumbers = (recipe, ingredients) => {
+	const ingNums = {};
+	recipe.forEach(ing => {
+		if(ingNums[ing] === undefined) { ingNums[ing] = 0; }
+		ingNums[ing] += 1;
+	});
+	ingredients.forEach(ing => {
+		if(ingNums[ing] === undefined) { ingNums[ing] = 0; }
+		ingNums[ing] -= 1;
+	});
+	return ingNums;
+};
+
+export const existIngredient = (ingNum, item) => {
+	return item && item.num >= ingNum;
+};
+
+export const buildCoockedDish = (cookedDish, dish, ings) => {
+	let newItems = {};
+	newItems[dish] = 1;
+	ings.forEach(i => {
+		if (newItems[i] === undefined) { newItems[i] = 0; }
+		newItems[i] -= 1;
+	});
+	let newDish = _.cloneDeep(cookedDish);
+	newDish.push(newItems);
+	return newDish;
+}

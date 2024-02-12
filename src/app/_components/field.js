@@ -17,6 +17,7 @@ import { newItemLogs } from '../../lib/logs';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
 import { countUpRecords } from '../../lib/records';
+import ItemCounts from './item_counts';
 
 
 export default function Field({ rowIndex, cellIndex }) {
@@ -96,16 +97,6 @@ export default function Field({ rowIndex, cellIndex }) {
 		return cn.join(' ');
 	};
 
-	const itemEls = Object.keys(field.items).map((key) => {
-		if (itemOptions[key].type === 'tool') { return null; }
-
-		const num = field.items[key];
-		let classNames = [Style[`item-${key}`]];
-		if(num < 1) { classNames.push(Style['is-minus']); }
-
-		return <span className={classNames.join(' ')} key={key}>{num > 0 ? '+' : ''}{num}</span>;
-	});
-
 	return (
 		<td
 			className={className()}
@@ -127,7 +118,8 @@ export default function Field({ rowIndex, cellIndex }) {
 					alt={field.field}
 					/>
 			</div>
-			<div className={Style.items}>{itemEls}</div>
+
+			<ItemCounts itemNums={field.items} style={Style} />
 		</td>
 	)
 }

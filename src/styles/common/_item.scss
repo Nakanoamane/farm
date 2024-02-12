@@ -19,6 +19,10 @@
 
 	.itemName {
 		display: none;
+
+		&.is-show {
+			display: inline-block;
+		}
 	}
 }
 
@@ -46,6 +50,10 @@
 		border: 1px solid $color-black;
 		color: $color-black;
 		font-size: 10px;
+
+		&.is-show {
+			display: inline-block;
+		}
 	}
 
 	&:hover {
@@ -66,25 +74,93 @@
 	}
 }
 
-@each $item in $items {
-	.#{$item} {
-		@include item;
-		background: url('~/public/images/items/#{$item}.webp') no-repeat center/cover;
+@mixin items {
+	@each $item in $items {
+		.#{$item} {
+			@include item;
+			background: url('~/public/images/items/#{$item}.webp') no-repeat center/cover;
+		}
+
+		.icon-#{$item} {
+			background: url('~/public/images/cursors/#{$item}.svg') no-repeat center/contain;
+		}
+
+		input:disabled + label.#{$item} {
+			@include disabledItem;
+		}
+
+		input:checked + label.#{$item} {
+			@include activeItem;
+		}
 	}
 
-	.icon-#{$item} {
-		background: url('~/public/images/cursors/#{$item}.svg') no-repeat center/contain;
-	}
-
-	input:disabled + label.#{$item} {
-		@include disabledItem;
-	}
-
-	input:checked + label.#{$item} {
-		@include activeItem;
+	.icon-secret {
+		opacity: .5;
 	}
 }
 
-.icon-secret {
-	opacity: .5;
+@mixin itemsCursor {
+	@each $item in $items {
+		&.cursor-#{$item} {
+			cursor: url('~/public/images/cursors/#{$item}.svg'), auto;
+		}
+	}
+
+	&.is-disabled {
+		cursor: not-allowed;
+	}
+}
+
+@mixin itemCounts {
+	.itemCounts {
+		position: absolute;
+		width: 100%;
+		top: 10px;
+		left: 0;
+		pointer-events: none;
+
+		@keyframes slideUp {
+			0% {
+				transform: translateY(0);
+				opacity: 1;
+			}
+			80% {
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(-10px);
+				opacity: 0;
+			}
+		}
+
+		@each $item in $items {
+			.item-#{$item} {
+				display: block;
+				color: $color-white;
+				font-weight: 600;
+				font-size: 13px;
+				font-family: $font-en;
+				background: $color-terracotta;
+				width: 40px;
+				padding: 2px;
+				border-radius: 10px;
+				text-align: center;
+				margin: 0 0 3px auto;
+				animation: slideUp 0.5s ease-in-out forwards;
+
+				&::before {
+					content: '';
+					display: inline-block;
+					vertical-align: middle;
+					width: 15px;
+					height: 15px;
+					background: url('~/public/images/cursors/#{$item}.svg') no-repeat center/contain;
+					margin-right: 1px;
+				}
+				&.is-minus {
+					background: $color-mint;
+				}
+			}
+		}
+	}
 }

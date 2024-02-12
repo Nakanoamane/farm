@@ -63,6 +63,8 @@ export default function Saver() {
 		setIngredients(loadData.ingredients);
 		setRecords(loadData.records);
 		setSavedAt(loadData.savedAt);
+
+		setLoadConfirm(false);
 	};
 
 	const onClickSave = () => {
@@ -75,6 +77,7 @@ export default function Saver() {
 		const saveDataJson = JSON.stringify(newSaveData);
 		setSaveData(newSaveData);
 		localStorage.setItem(STORAGE_KEY, saveDataJson);
+		setSaveConfirm(false);
 	};
 
 	const saveConfirmEl = () => {

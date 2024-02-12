@@ -3,9 +3,9 @@
 import Style from '../../styles/modules/kitchen.module.scss';
 
 import _ from 'lodash';
-import { useRecoilState } from 'recoil';
-import { itemsState, logsState, ingredientsState } from '../../lib/state';
-import { recipeItems } from '../../lib/kitchen';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { itemsState, logsState, ingredientsState, dishState } from '../../lib/state';
+import { recipeItems, ingNumbers, existIngredient } from '../../lib/kitchen';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
 
@@ -13,6 +13,7 @@ export default function Recipes(){
 	const [items, setItems] = useRecoilState(itemsState);
 	const [logs, setLogs] = useRecoilState(logsState);
 	const [ingredients, setIngredients] = useRecoilState(ingredientsState);
+	const dish = useRecoilValue(dishState);
 
 	const onClickRecipe = (item) => {
 		let recipe = _.cloneDeep(itemOptions[item].recipe);
@@ -43,36 +44,33 @@ export default function Recipes(){
 		const itemOption = itemOptions[i];
 		const item = items[i];
 		const unlocked = item && item.totalNum >= 1;
+		const id = `recipe_${i}`;
+		const ingNums = ingNumbers(itemOption.recipe, ingredients);
+		const able = itemOption.recipe.every(ing => existIngredient(ingNums[ing], items[ing]));
 
-		const icons = itemOption.recipe.map((ingredient, index) => {
-			const i = items[ingredient];
-			const className = i && i.totalNum >= 1 ? ingredient : 'secret';
-			const statusClassName = i && i.num >= 1 ? '' : Style['is-disabled'];
+		const icons = itemOption.recipe.map((ing, index) => {
+			const item = items[ing];
+			const className = item && item.totalNum >= 1 ? ing : 'secret';
+			const statusClassName = existIngredient(ingNums[ing], item) ? '' : Style['is-disabled'];
 			return <i key={index} className={`${Style[`icon-${className}`]} ${statusClassName}`}></i>;
 		});
 
-		const ingNums = {};
-		itemOption.recipe.forEach(ingredient => {
-			if(ingNums[ingredient] === undefined) { ingNums[ingredient] = 0; }
-			ingNums[ingredient] += 1;
-		});
-		ingredients.forEach(ingredient => {
-			if(ingNums[ingredient] === undefined) { ingNums[ingredient] = 0; }
-			ingNums[ingredient] -= 1;
-		});
-
-		const able = itemOption.recipe.every(ingredient => items[ingredient] && items[ingredient].num >= ingNums[ingredient]);
-
 		return (
 			<li key={i} className={Style.recipe}>
-				<button
-					type="button"
-					className={`${Style.recipeBtn} ${unlocked ? Style[i] : Style.secret}`}
-					disabled={!able}
-					onClick={() => onClickRecipe(i)}
-					>
-					<span className={Style.itemName}>{ unlocked ? i : '???' }</span>
-				</button>
+				<div className={Style.recipeItem}>
+					<input
+						type="radio"
+						name="recipes"
+						id={id}
+						className={`${Style.radio}`}
+						defaultChecked={dish === i}
+						disabled={!able}
+						onClick={() => onClickRecipe(i)}
+						/>
+					<label htmlFor={id} className={unlocked ? Style[i] : Style.secret}>
+						<span className={`${Style.itemName} ${Style['is-show']}`}>{ unlocked ? i : '???' }</span>
+					</label>
+				</div>
 
 				<div className={Style.ingredients}>
 					{icons}

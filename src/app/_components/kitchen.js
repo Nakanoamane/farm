@@ -2,7 +2,7 @@
 
 import Style from '../../styles/modules/kitchen.module.scss';
 
-import _ from 'lodash';
+import _, { set } from 'lodash';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -13,11 +13,13 @@ import {
   selectedShopState,
   ingredientsState,
   dishState,
+  cookedDishState,
   recordsState } from '../../lib/state';
 import Recipes from './recipes';
+import ItemCounts from './item_counts';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
-import { recipeItems, searchDish } from '../../lib/kitchen';
+import { recipeItems, searchDish, buildCoockedDish } from '../../lib/kitchen';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
 import { countUpRecords } from '../../lib/records';
@@ -30,6 +32,7 @@ export default function Kitchen(){
   const selectedShop = useRecoilValue(selectedShopState);
   const [ingredients, setIngredients] = useRecoilState(ingredientsState);
   const [dish, setDish] = useRecoilState(dishState);
+  const [cookedDish, setCookedDish] = useRecoilState(cookedDishState);
   const [records, setRecords] = useRecoilState(recordsState);
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export default function Kitchen(){
 
   useEffect(() => {
     refreshPot();
+    setCookedDish([]);
   }, [selectedShop]);
 
   const searchAndSetDish = () => {
@@ -91,6 +95,8 @@ export default function Kitchen(){
 			}
 		});
 
+    setCookedDish(buildCoockedDish(cookedDish, dish, ingredients));
+
     setScore(score + (itemOptions[dish].recipe.length * 2));
     updateItemsAndLogs(newItems);
     setIngredients(newIngs);
@@ -124,6 +130,9 @@ export default function Kitchen(){
 		setLogs(addLogs.concat([...logs]));
   };
 
+  const itemCountEls = cookedDish.map((itemNums, index) => {
+    return <ItemCounts itemNums={itemNums} style={Style} key={index} />;
+  });
 
   const ingEls = ingredients.map((ingredient, index) => {
     return (
@@ -159,6 +168,8 @@ export default function Kitchen(){
             >
               <span className={Style.itemName}>{dishLabel()}</span>
             </button>
+
+          {itemCountEls}
         </div>
       </div>
 
