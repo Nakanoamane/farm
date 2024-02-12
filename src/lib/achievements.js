@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { calcLevel } from './score';
 
 export const achievementOptions = {
   level1: {
@@ -33,19 +32,19 @@ export const achievementOptions = {
   },
   money2: {
     title: 'Rich',
-    text: '1,000コイン貯金する',
+    text: '300コイン貯金する',
     icon: 'money-mint',
     next: 'money3'
   },
   money3: {
     title: 'Wealthy',
-    text: '10,000コイン貯金する',
+    text: '1,000コイン貯金する',
     icon: 'money-lime',
     next: 'money4'
   },
   money4: {
     title: 'Tycoon',
-    text: '100,000コイン貯金する',
+    text: '5,000コイン貯金する',
     icon: 'money-mustard',
   },
   time1: {
@@ -85,13 +84,13 @@ export const achievementOptions = {
   },
   farm3: {
     title: 'Extensive Fieald',
-    text: '1,000回農作業をする',
+    text: '500回農作業をする',
     icon: 'farm-lime',
     next: 'farm4'
   },
   farm4: {
     title: 'Great Farmer',
-    text: '10,000回農作業をする',
+    text: '1,000回農作業をする',
     icon: 'farm-mustard',
   },
   cook1: {
@@ -165,25 +164,25 @@ export const achievementOptions = {
   },
   income1: {
     title: 'Earn Income',
-    text: '300コイン得る',
+    text: '100コイン得る',
     icon: 'income-tea',
     next: 'income2'
   },
   income2: {
     title: 'Nice Earning',
-    text: '3,000コイン得る',
+    text: '500コイン得る',
     icon: 'income-mint',
     next: 'income3'
   },
   income3: {
     title: 'Good Earning',
-    text: '30,000コイン得る',
+    text: '1,000コイン得る',
     icon: 'income-lime',
     next: 'income4'
   },
   income4: {
     title: 'Money Maker',
-    text: '300,000コイン得る',
+    text: '10,000コイン得る',
     icon: 'income-mustard',
   },
   expense1: {
@@ -194,19 +193,19 @@ export const achievementOptions = {
   },
   expense2: {
     title: 'Some Expense',
-    text: '1,000コイン使う',
+    text: '500コイン使う',
     icon: 'expense-mint',
     next: 'expense3'
   },
   expense3: {
     title: 'Much Expense',
-    text: '10,000コイン使う',
+    text: '1,000コイン使う',
     icon: 'expense-lime',
     next: 'expense4'
   },
   expense4: {
     title: 'Big Spender',
-    text: '100,000コイン使う',
+    text: '10,000コイン使う',
     icon: 'expense-mustard',
   },
 };
@@ -220,9 +219,9 @@ const achievementMaps = {
   },
   money: {
     money1: 100,
-    money2: 1000,
-    money3: 10000,
-    money4: 100000,
+    money2: 300,
+    money3: 1000,
+    money4: 5000,
   },
   time: {
     time1: 60,
@@ -233,8 +232,8 @@ const achievementMaps = {
   farm: {
     farm1: 10,
     farm2: 100,
-    farm3: 1000,
-    farm4: 10000,
+    farm3: 500,
+    farm4: 1000,
   },
   cook: {
     cook1: 1,
@@ -255,16 +254,16 @@ const achievementMaps = {
     buy4: 500,
   },
   income: {
-    income1: 300,
-    income2: 3000,
-    income3: 30000,
-    income4: 300000,
+    income1: 100,
+    income2: 500,
+    income3: 1000,
+    income4: 10000,
   },
   expense: {
     expense1: 100,
-    expense2: 1000,
-    expense3: 10000,
-    expense4: 100000,
+    expense2: 500,
+    expense3: 1000,
+    expense4: 10000,
   },
 };
 
