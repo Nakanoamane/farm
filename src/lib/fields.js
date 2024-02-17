@@ -1,6 +1,9 @@
 export const fieldsOptions = {
   plowed: {
-    grow: ['green'],
+    image: 'plowed',
+    grow: {
+      green: 1
+    },
     growSec: 30,
     items: {
       hoe: { field: 'green' },
@@ -12,7 +15,12 @@ export const fieldsOptions = {
     }
   },
   green: {
-    grow: ['grass1', 'grass2', 'grass3'],
+    image: 'green',
+    grow: {
+      grass1: 2,
+      grass2: 2,
+      grass3: 1
+    },
     growSec: 120,
     items: {
       hoe: { field: 'plowed' },
@@ -22,117 +30,158 @@ export const fieldsOptions = {
     }
   },
   grass1: {
+    image: 'grass1',
     items: {
       sickle: { field: 'green' },
     }
   },
   grass2: {
+    image: 'grass2',
     items: {
       sickle: { field: 'green' },
     }
   },
   grass3: {
+    image: 'grass3',
     items: {
       sickle: { field: 'green', items: { wheat: 1 } },
     }
   },
   wheat1: {
-    grow: ['wheat2'],
+    image: 'wheat1',
+    grow: {
+      wheat2: 1
+    },
     growSec: 5,
     items: {
       sickle: { field: 'plowed', items: { wheat: 1 } },
     }
   },
   wheat2: {
-    grow: ['wheat3'],
+    image: 'wheat2',
+    grow: {
+      wheat3: 1
+    },
     growSec: 10,
     items: {
       sickle: { field: 'plowed', items: { wheat: 1 } },
     }
   },
   wheat3: {
+    image: 'wheat3',
     items: {
       sickle: { field: 'plowed', items: { wheat: 2, flour: 2 }, addScore: true },
     }
   },
   sugarcane1: {
-    grow: ['sugarcane2'],
+    image: 'sugarcane1',
+    grow: {
+      sugarcane2: 1
+    },
     growSec: 5,
     items: {
       sickle: { field: 'plowed', items: { sugarcane: 1 } },
     }
   },
   sugarcane2: {
-    grow: ['sugarcane3'],
+    image: 'sugarcane2',
+    grow: {
+      sugarcane3: 1
+    },
     growSec: 10,
     items: {
       sickle: { field: 'plowed', items: { sugarcane: 1 } },
     }
   },
   sugarcane3: {
+    image: 'sugarcane3',
     items: {
       sickle: { field: 'plowed', items: { sugarcane: 2, sugar: 1 }, addScore: true },
     }
   },
   carrot1: {
-    grow: ['carrot2'],
+    image: 'carrot1',
+    grow: {
+      carrot2: 1
+    },
     growSec: 10,
     items: {
       sickle: { field: 'plowed', items: { carrotSeed: 1 } },
     }
   },
   carrot2: {
-    grow: ['carrot3'],
+    image: 'carrot2',
+    grow: {
+      carrot3: 1
+    },
     growSec: 15,
     items: {
       sickle: { field: 'plowed', items: { carrotSeed: 1 } },
     }
   },
   carrot3: {
+    image: 'carrot3',
     items: {
       sickle: { field: 'plowed', items: { carrotSeed: 2, carrot: 1 }, addScore: true },
     }
   },
   potato1: {
-    grow: ['potato2'],
+    image: 'potato1',
+    grow: {
+      potato2: 1
+    },
     growSec: 10,
     items: {
       sickle: { field: 'plowed', items: { seedPotato: 1 } },
     }
   },
   potato2: {
-    grow: ['potato3'],
+    image: 'potato2',
+    grow: {
+      potato3: 1
+    },
     growSec: 15,
     items: {
       sickle: { field: 'plowed', items: { seedPotato: 1 } },
     }
   },
   potato3: {
+    image: 'potato3',
     items: {
       sickle: { field: 'plowed', items: { seedPotato: 2, potato: 1 }, addScore: true },
     }
   },
   tomato1: {
-    grow: ['tomato2'],
+    image: 'tomato1',
+    grow: {
+      tomato2: 1
+    },
     growSec: 10,
     items: {
       sickle: { field: 'plowed', items: { tomatoSeed: 1 } },
     }
   },
   tomato2: {
-    grow: ['tomato3'],
+    image: 'tomato2',
+    grow: {
+      tomato3: 1
+    },
     growSec: 15,
     items: {
       sickle: { field: 'plowed', items: { tomatoSeed: 1 } },
     }
   },
   tomato3: {
+    image: 'tomato3',
     items: {
       sickle: { field: 'plowed', items: { tomatoSeed: 2, tomato: 1 }, addScore: true },
     }
   },
   poultry1: {
-    grow: ['poultry2'],
+    image: 'poultry1',
+    grow: {
+      poultry2: 1
+    },
     growSec: 10,
     items: {
       hand: { field: 'green', items: { poultry: 1 } },
@@ -140,7 +189,10 @@ export const fieldsOptions = {
     }
   },
   poultry2: {
-    grow: ['poultry3'],
+    image: 'poultry2',
+    grow: {
+      poultry3: 1
+    },
     growSec: 20,
     items: {
       hand: { field: 'poultry1', items: { egg: 1 }, addScore: true },
@@ -148,13 +200,17 @@ export const fieldsOptions = {
     }
   },
   poultry3: {
+    image: 'poultry3',
     items: {
       hand: { field: 'poultry1', items: { poultry: 1 }, addScore: true },
       sickle: { field: 'green', items: { chicken: 2 }, addScore: true },
     }
   },
   cow1: {
-    grow: ['cow2'],
+    image: 'cow1',
+    grow: {
+      cow2: 1
+    },
     growSec: 10,
     items: {
       hand: { field: 'green', items: { cow: 1 } },
@@ -162,7 +218,10 @@ export const fieldsOptions = {
     }
   },
   cow2: {
-    grow: ['cow3'],
+    image: 'cow2',
+    grow: {
+      cow3: 1
+    },
     growSec: 20,
     items: {
       hand: { field: 'cow1', items: { milk: 1 }, addScore: true },
@@ -170,13 +229,17 @@ export const fieldsOptions = {
     }
   },
   cow3: {
+    image: 'cow3',
     items: {
       hand: { field: 'cow1', items: { cow: 1 }, addScore: true },
       sickle: { field: 'green', items: { beaf: 2 }, addScore: true },
     }
   },
   pig1: {
-    grow: ['pig2'],
+    image: 'pig1',
+    grow: {
+      pig2: 1
+    },
     growSec: 15,
     items: {
       hand: { field: 'green', items: { pig: 1 } },
@@ -184,6 +247,7 @@ export const fieldsOptions = {
     }
   },
   pig2: {
+    image: 'pig2',
     items: {
       hand: { field: 'pig1', items: { pig: 1 }, addScore: true },
       sickle: { field: 'green', items: { pork: 2 }, addScore: true },
@@ -221,8 +285,14 @@ function updateField(time, field){
     return newField(time, field.field);
   };
 
-  let index = Math.floor(Math.random() * option.grow.length);
-  return newField(time, option.grow[index]);
+  let grows = [];
+  Object.keys(option.grow).forEach((key) => {
+    for (let i = 0; i < option.grow[key]; i++) {
+      grows.push(key);
+    }
+  });
+  const index = Math.floor(Math.random() * grows.length);
+  return newField(time, grows[index]);
 }
 
 export function updateFields(time, fields) {

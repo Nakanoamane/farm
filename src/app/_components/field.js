@@ -104,14 +104,14 @@ export default function Field({ rowIndex, cellIndex }) {
 			>
 			<div className={Style.imageBox}>
 				<Image
-					src={imagePath(`images/fields/${field.field}-a.webp`)}
+					src={imagePath(`images/fields/${fieldOption.image}-a.webp`)}
 					className={Style.imageA}
 					width={75}
 					height={75}
 					alt={field.field}
 					/>
 				<Image
-					src={imagePath(`images/fields/${field.field}-b.webp`)}
+					src={imagePath(`images/fields/${fieldOption.image}-b.webp`)}
 					className={Style.imageB}
 					width={75}
 					height={75}

@@ -135,6 +135,11 @@ export const itemOptions = {
     recipe: [ 'beaf' ],
     sell: 30,
   },
+  carrotJuice: {
+    type: 'food',
+    recipe: [ 'carrot' ],
+    sell: 30,
+  },
   frenchFries: {
     type: 'food',
     recipe: [ 'potato' ],
@@ -159,6 +164,16 @@ export const itemOptions = {
     type: 'food',
     recipe: [ 'egg', 'tomato' ],
     sell: 50,
+  },
+  ham: {
+    type: 'food',
+    recipe: [ 'pork' ],
+    sell: 40,
+  },
+  hotdog: {
+    type: 'food',
+    recipe: [ 'bread', 'pork' ],
+    sell: 60,
   },
   baconEgg: {
     type: 'food',
