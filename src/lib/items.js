@@ -138,7 +138,7 @@ export const itemOptions = {
     recipe: [ 'chicken' ],
     sell: 30,
   },
-  fliedChicken: {
+  friedChicken: {
     type: 'food',
     recipe: [ 'flour', 'chicken' ],
     sell: 50,
