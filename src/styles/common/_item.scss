@@ -53,6 +53,10 @@
 
 		&.is-show {
 			display: inline-block;
+			top: auto;
+			bottom: -4px;
+			right: 50%;
+			transform: translateX(50%);
 		}
 	}
 

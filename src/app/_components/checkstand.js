@@ -2,7 +2,7 @@
 
 import Style from '../../styles/modules/checkstand.module.scss';
 
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import ItemCounts from './item_counts';
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -124,7 +124,7 @@ export default function Checkstand(){
             onClick={onClickSell}
             disabled={ itemOptions[selectedItem].sell === undefined || !items[selectedItem].num >= 1 }
             >
-            <span className={Style.itemName}>{ selectedItem }</span>
+            <span className={`${Style.itemName} ${Style['is-show']}`}>{ selectedItem }</span>
           </button>
           <p className={Style.sellNum}>{ itemOptions[selectedItem].sell === undefined ? '' : `+ ${itemOptions[selectedItem].sell}` }</p>
           {selledCountEls}

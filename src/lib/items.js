@@ -35,6 +35,11 @@ export const itemOptions = {
     buy: 100,
     sell: 2
   },
+  lettuceSeed: {
+    type: 'crop',
+    buy: 150,
+    sell: 3
+  },
   poultry: {
     type: 'livestock',
     buy: 100,
@@ -75,6 +80,10 @@ export const itemOptions = {
     type: 'food',
     sell: 10,
   },
+  lettuce: {
+    type: 'food',
+    sell: 15,
+  },
   milk: {
     type: 'food',
     sell: 5,
@@ -107,7 +116,7 @@ export const itemOptions = {
   pancake: {
     type: 'food',
     recipe: [ 'flour', 'egg', 'milk' ],
-    sell: 50,
+    sell: 40,
   },
   cookie: {
     type: 'food',
@@ -128,6 +137,11 @@ export const itemOptions = {
     type: 'food',
     recipe: [ 'chicken' ],
     sell: 30,
+  },
+  fliedChicken: {
+    type: 'food',
+    recipe: [ 'flour', 'chicken' ],
+    sell: 50,
   },
   cheese: {
     type: 'food',
@@ -154,10 +168,15 @@ export const itemOptions = {
     recipe: [ 'potato' ],
     sell: 30,
   },
+  potatoSalad: {
+    type: 'food',
+    recipe: [ 'potato', 'pork' ],
+    sell: 70,
+  },
   stew: {
     type: 'food',
     recipe: [ 'potato', 'carrot', 'beaf' ],
-    sell: 80,
+    sell: 90,
   },
   pasta: {
     type: 'food',
@@ -172,7 +191,7 @@ export const itemOptions = {
   omelette: {
     type: 'food',
     recipe: [ 'egg', 'tomato' ],
-    sell: 50,
+    sell: 40,
   },
   ham: {
     type: 'food',
@@ -201,8 +220,23 @@ export const itemOptions = {
   },
   honeyToast: {
     type: 'food',
-    recipe: [ 'milk', 'bread', 'honey' ],
+    recipe: [ 'milk', 'honey', 'bread' ],
     sell: 110,
+  },
+  salad: {
+    type: 'food',
+    recipe: [ 'tomato', 'lettuce' ],
+    sell: 70,
+  },
+  sandwich: {
+    type: 'food',
+    recipe: [ 'egg', 'lettuce', 'bread' ],
+    sell: 120,
+  },
+  hamburger: {
+    type: 'food',
+    recipe: [ 'beaf', 'tomato', 'lettuce', 'bread', 'cheese' ],
+    sell: 200,
   },
 };
 

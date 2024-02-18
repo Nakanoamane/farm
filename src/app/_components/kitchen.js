@@ -2,7 +2,7 @@
 
 import Style from '../../styles/modules/kitchen.module.scss';
 
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
