@@ -50,6 +50,11 @@ export const itemOptions = {
     buy: 100,
     sell: 3
   },
+  bee: {
+    type: 'livestock',
+    buy: 200,
+    sell: 5
+  },
   flour: {
     type: 'food',
     sell: 5,
@@ -89,6 +94,10 @@ export const itemOptions = {
   pork: {
     type: 'food',
     sell: 10,
+  },
+  honey: {
+    type: 'food',
+    sell: 15,
   },
   bread: {
     type: 'food',
@@ -173,12 +182,27 @@ export const itemOptions = {
   hotdog: {
     type: 'food',
     recipe: [ 'bread', 'pork' ],
-    sell: 60,
+    sell: 80,
   },
   baconEgg: {
     type: 'food',
     recipe: [ 'bread', 'egg', 'pork' ],
     sell: 100,
+  },
+  honeyMilk: {
+    type: 'food',
+    recipe: [ 'milk', 'honey' ],
+    sell: 50,
+  },
+  honeyChicken: {
+    type: 'food',
+    recipe: [ 'chicken', 'honey' ],
+    sell: 60,
+  },
+  honeyToast: {
+    type: 'food',
+    recipe: [ 'milk', 'bread', 'honey' ],
+    sell: 110,
   },
 };
 
@@ -249,4 +273,12 @@ const sortItems = (items) => {
   });
 
   return {...newItems, ...secretItems};
+};
+
+export const baloonItemTypes = {
+  balloon: ['tool', 'crop', 'livestock'],
+  balloonLarge: ['tool', 'crop', 'livestock', 'food'],
+  balloonSmall: ['tool', 'crop', 'livestock'],
+  balloonRestaurant: ['food'],
+  balloonGrocer: ['crop', 'livestock', 'food'],
 };

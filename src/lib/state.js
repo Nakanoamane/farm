@@ -109,3 +109,13 @@ export const loadConfirmState = atom({
   key: 'loadConfirm',
   default: false,
 });
+
+export const selledItemsState = atom({
+  key: 'selledItems',
+  default: [],
+});
+
+export const boughtItemsState = atom({
+  key: 'boughtItems',
+  default: {},
+});

@@ -19,7 +19,7 @@ import Recipes from './recipes';
 import ItemCounts from './item_counts';
 import { itemOptions, updateItems } from '../../lib/items';
 import { newItemLogs } from '../../lib/logs';
-import { recipeItems, searchDish, buildCoockedDish } from '../../lib/kitchen';
+import { recipeItems, searchDish, buildCookedDish } from '../../lib/kitchen';
 import Image from 'next/image';
 import { imagePath } from '../../lib/image';
 import { countUpRecords } from '../../lib/records';
@@ -95,7 +95,7 @@ export default function Kitchen(){
 			}
 		});
 
-    setCookedDish(buildCoockedDish(cookedDish, dish, ingredients));
+    setCookedDish(buildCookedDish(cookedDish, dish, ingredients));
 
     setScore(score + (itemOptions[dish].recipe.length * 2));
     updateItemsAndLogs(newItems);

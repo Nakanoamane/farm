@@ -2,7 +2,9 @@
 
 import Style from '../../styles/modules/checkstand.module.scss';
 
-import _ from 'lodash';
+import _, { set } from 'lodash';
+import ItemCounts from './item_counts';
+import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   itemsState,
@@ -11,8 +13,10 @@ import {
   logsState,
   moneyState,
   selectedShopState,
-  recordsState } from '../../lib/state';
-import { products } from '../../lib/checkstand';
+  recordsState,
+  selledItemsState,
+  boughtItemsState } from '../../lib/state';
+import { products, buildSelledItems, buildBoughtItems } from '../../lib/checkstand';
 import { newItemLogs } from '../../lib/logs';
 import { itemOptions, updateItems } from '../../lib/items';
 import { countUpRecords } from '../../lib/records';
@@ -25,6 +29,13 @@ export default function Checkstand(){
   const [money, setMoney] = useRecoilState(moneyState);
   const selectedShop = useRecoilValue(selectedShopState);
   const [records, setRecords] = useRecoilState(recordsState);
+  const [selledItems, setSelledItems] = useRecoilState(selledItemsState);
+  const [boughtItems, setBoughtItems] = useRecoilState(boughtItemsState);
+
+  useEffect(() => {
+    setSelledItems([]);
+    setBoughtItems({});
+  }, [selectedShop]);
 
   const updateItemsAndLogs = (newItems) => {
     setItems(updateItems(items, newItems));
@@ -43,6 +54,7 @@ export default function Checkstand(){
     const newItems = {};
     newItems[selectedItem] = -1;
     updateItemsAndLogs(newItems);
+    setSelledItems(buildSelledItems(selledItems, newItems));
 
     const sell = itemOptions[selectedItem].sell;
     setMoney(money + sell);
@@ -57,6 +69,7 @@ export default function Checkstand(){
     const newItems = {};
     newItems[product] = 1;
     updateItemsAndLogs(newItems);
+    setBoughtItems(buildBoughtItems(boughtItems, product, newItems));
 
     const buy = itemOptions[product].buy;
     setMoney(money - buy);
@@ -67,9 +80,19 @@ export default function Checkstand(){
     setRecords(newRecords);
   };
 
+  const selledCountEls = selledItems.map((itemNums, index) => {
+    return <ItemCounts itemNums={itemNums} style={Style} key={index} />;
+  });
+
   const productEls = () => {
     return products.map(product => {
       const itemOption = itemOptions[product];
+      let boughtCountEls = null;
+      if(boughtItems[product] !== undefined){
+        boughtCountEls = boughtItems[product].map((itemNums, index) => {
+          return <ItemCounts itemNums={itemNums} style={Style} key={index} />;
+        });
+      }
 
       return(
         <li key={product} className={Style.product}>
@@ -84,6 +107,7 @@ export default function Checkstand(){
           <p className={ money < itemOption.buy ? `${Style.buyNum} ${Style['is-disabled']}` : Style.buyNum}>
             {itemOption.buy}
           </p>
+          {boughtCountEls}
         </li>
       );
     });
@@ -103,6 +127,7 @@ export default function Checkstand(){
             <span className={Style.itemName}>{ selectedItem }</span>
           </button>
           <p className={Style.sellNum}>{ itemOptions[selectedItem].sell === undefined ? '' : `+ ${itemOptions[selectedItem].sell}` }</p>
+          {selledCountEls}
         </div>
 
         <div className={Style.wallet}>{money.toLocaleString()}</div>

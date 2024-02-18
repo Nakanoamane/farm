@@ -27,6 +27,7 @@ export const fieldsOptions = {
       poultry: { field: 'poultry1' },
       cow: { field: 'cow1' },
       pig: { field: 'pig1' },
+      bee: { field: 'bee1' },
     }
   },
   grass1: {
@@ -251,6 +252,32 @@ export const fieldsOptions = {
     items: {
       hand: { field: 'pig1', items: { pig: 1 }, addScore: true },
       sickle: { field: 'green', items: { pork: 2 }, addScore: true },
+    }
+  },
+  bee1: {
+    image: 'bee1',
+    grow: {
+      bee2: 1
+    },
+    growSec: 20,
+    items: {
+      hand: { field: 'green', items: { bee: 1 } },
+    }
+  },
+  bee2: {
+    image: 'bee2',
+    grow: {
+      bee3: 1
+    },
+    growSec: 30,
+    items: {
+      hand: { field: 'bee1', items: { honey: 1 }, addScore: true }
+    }
+  },
+  bee3: {
+    image: 'bee3',
+    items: {
+      hand: { field: 'bee1', items: { bee: 2 }, addScore: true }
     }
   },
 };

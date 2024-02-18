@@ -4,7 +4,7 @@ import Style from '../../styles/modules/home.module.scss';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { homeBalloonState, itemsState, selectedItemState,} from '../../lib/state';
-import { itemOptions } from '../../lib/items';
+import { itemOptions, baloonItemTypes } from '../../lib/items';
 
 export default function Items() {
   const homeBalloon = useRecoilValue(homeBalloonState);
@@ -18,6 +18,10 @@ export default function Items() {
     const id = `item_${key}`;
     const isSecret = itemOption.type !== 'tool' && !item.totalNum;
     const className = isSecret ? Style.secret : Style[key];
+    const balloonItems = baloonItemTypes[homeBalloon];
+    if (balloonItems && !balloonItems.includes(itemOption.type)) {
+      return null;
+    }
 
     return (
       <li key={id}>

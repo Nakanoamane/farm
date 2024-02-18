@@ -30,7 +30,7 @@ export const existIngredient = (ingNum, item) => {
 	return item && item.num >= ingNum;
 };
 
-export const buildCoockedDish = (cookedDish, dish, ings) => {
+export const buildCookedDish = (cookedDish, dish, ings) => {
 	let newItems = {};
 	newItems[dish] = 1;
 	ings.forEach(i => {

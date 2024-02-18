@@ -36,6 +36,8 @@
 			width: 120px;
 			height: 120px;
 			padding: 10px 0;
+			position: relative;
+			@include itemCounts;
 
 			button {
 				margin: 0 auto;
@@ -100,6 +102,8 @@
 			}
 
 			.product {
+				position: relative;
+				@include itemCounts;
 
 				.buyNum {
 					text-align: center;
