@@ -40,6 +40,11 @@ export const itemOptions = {
     buy: 150,
     sell: 3
   },
+  cornKernel: {
+    type: 'crop',
+    buy: 150,
+    sell: 3
+  },
   poultry: {
     type: 'livestock',
     buy: 100,
@@ -83,6 +88,10 @@ export const itemOptions = {
   lettuce: {
     type: 'food',
     sell: 15,
+  },
+  corn: {
+    type: 'food',
+    sell: 10,
   },
   milk: {
     type: 'food',
@@ -237,6 +246,16 @@ export const itemOptions = {
     type: 'food',
     recipe: [ 'beaf', 'tomato', 'lettuce', 'bread', 'cheese' ],
     sell: 200,
+  },
+  popcorn: {
+    type: 'food',
+    recipe: [ 'corn' ],
+    sell: 30,
+  },
+  taco: {
+    type: 'food',
+    recipe: [ 'beaf', 'lettuce', 'tomato', 'corn' ],
+    sell: 120,
   },
 };
 

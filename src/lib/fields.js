@@ -13,6 +13,7 @@ export const fieldsOptions = {
       seedPotato: { field: 'potato1' },
       tomatoSeed: { field: 'tomato1' },
       lettuceSeed: { field: 'lettuce1' },
+      cornKernel: { field: 'corn1' },
     }
   },
   green: {
@@ -203,6 +204,32 @@ export const fieldsOptions = {
     image: 'lettuce3',
     items: {
       sickle: { field: 'plowed', items: { lettuceSeed: 2, lettuce: 1 }, addScore: true },
+    }
+  },
+  corn1: {
+    image: 'corn1',
+    grow: {
+      corn2: 1
+    },
+    growSec: 10,
+    items: {
+      sickle: { field: 'plowed', items: { cornKernel: 1 } },
+    }
+  },
+  corn2: {
+    image: 'corn2',
+    grow: {
+      corn3: 1
+    },
+    growSec: 15,
+    items: {
+      sickle: { field: 'plowed', items: { cornKernel: 1 } },
+    }
+  },
+  corn3: {
+    image: 'corn3',
+    items: {
+      sickle: { field: 'plowed', items: { cornKernel: 2, corn: 1 }, addScore: true },
     }
   },
   poultry1: {
